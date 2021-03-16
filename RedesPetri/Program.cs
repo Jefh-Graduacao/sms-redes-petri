@@ -1,4 +1,4 @@
-﻿using System;
+﻿using RedesPetri.Entidades;
 
 namespace RedesPetri
 {
@@ -6,7 +6,16 @@ namespace RedesPetri
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var rede = new Rede();
+
+            rede.CriarLugar(1);
+            rede.CriarLugar(2);
+
+            rede.CriarTransicao(1);
+
+            rede.CriarConexao(rede.ObterLugar(1)!, (rede.ObterTransicao(1)!, 3));
+
+
         }
     }
 }
