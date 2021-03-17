@@ -1,17 +1,23 @@
 using System.Collections.Generic;
 using System.Linq;
+using static System.Console;
 
 namespace RedesPetri.Entidades
 {
-    public class Rede
+    public class RedePetri
     {
         public List<Lugar> Lugares { get; set; } = new();
         public List<Transicao> Transicoes { get; set; } = new();
 
-        public void CriarLugar(int id)
+        public IReadOnlyCollection<(string id, string valor)> LugaresTransicoes
+            => Lugares.Select(lugar => ($"L{lugar.Id}", lugar.Marcas.ToString()))
+                .Concat(Transicoes.Select(tr => ($"T{tr.Id}", tr.EstáHabilitada ? "S" : "N")))
+                .ToArray();
+
+        public void CriarLugar(int id, int marcas = 0)
         {
             // Validar se já existe
-            Lugares.Add(new Lugar(id));
+            Lugares.Add(new Lugar(id, marcas));
         }
 
         public Lugar? ObterLugar(int id) => Lugares.FirstOrDefault(lugar => lugar.Id == id);
@@ -56,6 +62,19 @@ namespace RedesPetri.Entidades
         {
             var (lugar, peso) = conexao;
             transicao.CriarConexaoSaida(lugar, peso);
+        }
+
+        public void ImprimirRepresentacaoTextual()
+        {
+            Write("| ");
+            foreach (var id in Lugares.Select(lugar => $"L{lugar.Id}").Concat(Transicoes.Select(transicao => $"T{transicao.Id}")))
+                Write($"{id} |\t");
+
+            WriteLine();
+            Write("| ");
+
+            foreach (var valor in Lugares.Select(lugar => lugar.Marcas.ToString()).Concat(Transicoes.Select(transicao => transicao.EstáHabilitada ? "S" : "N")))
+                Write($"{valor}  |\t");
         }
     }
 }

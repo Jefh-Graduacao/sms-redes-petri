@@ -6,7 +6,7 @@ namespace RedesPetri
     {
         static void Main(string[] args)
         {
-            var rede = new Rede();
+            var rede = new RedePetri();
 
             rede.CriarLugar(1);
             rede.CriarLugar(2);
@@ -15,7 +15,7 @@ namespace RedesPetri
 
             rede.CriarConexao(rede.ObterLugar(1)!, (rede.ObterTransicao(1)!, 3));
 
-
+            rede.ImprimirRepresentacaoTextual();
         }
     }
 }

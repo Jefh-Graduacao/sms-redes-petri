@@ -2,9 +2,10 @@ namespace RedesPetri.Entidades
 {
     public record Lugar
     {
-        public Lugar(int id)
+        public Lugar(int id, int marcas)
         {
             Id = id;
+            Marcas = marcas;
         }
 
         public int Id { get; }
