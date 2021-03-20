@@ -14,14 +14,26 @@ namespace RedesPetri.Entidades
                 .Concat(Transicoes.Select(tr => ($"T{tr.Id}", tr.EstáHabilitada ? "S" : "N")))
                 .ToArray();
 
-        public void CriarLugar(int id, int marcas = 0)
+        //Cria lugar se não existe
+        public bool CriarLugar(int id, int marcas = 0)
         {
-            // Validar se já existe
-            Lugares.Add(new Lugar(id, marcas));
+            bool jaExiste = false;
+            
+            foreach (Lugar a in Lugares)
+                if(a.Id == id)  jaExiste = true;
+
+            if(jaExiste){
+                return false;
+            } else{
+                Lugares.Add(new Lugar(id, marcas));
+                return true;
+            }
         }
 
+        // Obtem um lugar da rede
         public Lugar? ObterLugar(int id) => Lugares.FirstOrDefault(lugar => lugar.Id == id);
 
+        //Método para remover um lugar da rede
         public bool RemoverLugar(int id)
         {
             // Aqui preferi criar uma lista nova do que remover o lugar da atual...
@@ -32,6 +44,7 @@ namespace RedesPetri.Entidades
             return teveExclusao;
         }
 
+        // Cria Transição se ela nao existe
         public bool CriarTransicao(int id)
         {
             if (ObterTransicao(id) is { })
@@ -52,12 +65,14 @@ namespace RedesPetri.Entidades
             return teveExclusao;
         }
 
+        //Método para criar Conexão do Lugar para uma Transição
         public void CriarConexao(Lugar lugar, (Transicao transicao, int peso) conexao)
         {
             var (transicao, peso) = conexao;
             transicao.CriarConexaoEntrada(lugar, peso);
         }
 
+        //Método para criar Conexão de uma Transição para um Lugar
         public void CriarConexao(Transicao transicao, (Lugar lugar, int peso) conexao)
         {
             var (lugar, peso) = conexao;

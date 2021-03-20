@@ -1,4 +1,5 @@
 ﻿using RedesPetri.Entidades;
+using System;
 
 namespace RedesPetri
 {
@@ -12,8 +13,10 @@ namespace RedesPetri
             rede.CriarLugar(2);
 
             rede.CriarTransicao(1);
+            rede.CriarTransicao(2);
 
-            rede.CriarConexao(rede.ObterLugar(1)!, (rede.ObterTransicao(1)!, 3));
+            rede.CriarConexao(rede.ObterLugar(1)!,  (rede.ObterTransicao(1)!, 1));
+            rede.CriarConexao(rede.ObterTransicao(1)!, (rede.ObterLugar(2)!,1));
 
             rede.ImprimirRepresentacaoTextual();
         }
