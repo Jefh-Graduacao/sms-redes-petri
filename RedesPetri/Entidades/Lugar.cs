@@ -11,8 +11,9 @@ namespace RedesPetri.Entidades
         public int Id { get; }
         public int Marcas { get; private set; } = 0;
 
-        public void ProduzirMarca() => Marcas += 1;
-        public void ConsumirMarca() => Marcas += 1;
+        public void ConsumirMarcas(int quantidade) => Marcas -= quantidade;
+        public void ProduzirMarcas(int quantidade) => Marcas += quantidade;
+
         public void LimparMarcas() => Marcas = 0;
     }
 }

@@ -79,6 +79,30 @@ namespace RedesPetri.Entidades
             transicao.CriarConexaoSaida(lugar, peso);
         }
 
+        public bool ExecutarCiclo()
+        {
+            // Todas tr habilitadas no início do ciclo
+            var idsTransicoesHabilitadas = Transicoes.Where(tr => tr.EstáHabilitada).Select(tr => tr.Id).ToArray();
+
+            if (idsTransicoesHabilitadas.Length == 0) 
+                return false;
+
+            foreach (var transicao in Transicoes.ToArray())
+            {
+                // Se a id da transicao estiver em um dos ids habilitados
+                if (idsTransicoesHabilitadas.Any(tr => tr == transicao.Id))
+                {
+                    // Consome marcas enquanto a transição estiver habilitada no ciclo                    
+                    while (transicao.EstáHabilitada)
+                    {
+                        transicao.ConsumirMarcas();
+                    }
+                }
+            }
+
+            return true;
+        }
+
         public void ImprimirRepresentacaoTextual()
         {
             Write("| ");
