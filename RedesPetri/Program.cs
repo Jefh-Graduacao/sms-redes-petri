@@ -1,5 +1,4 @@
 ﻿using RedesPetri.Entidades;
-using System;
 
 namespace RedesPetri
 {

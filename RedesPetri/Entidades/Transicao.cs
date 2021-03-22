@@ -13,7 +13,16 @@ namespace RedesPetri.Entidades
         public int Id { get; }
         public bool Ativa { get; private set; } = true;
 
-        public bool EstáHabilitada => _conexoesEntrada.All(con => con.Peso <= con.Lugar.Marcas);
+        public bool EstáHabilitada
+        {
+            get
+            {
+                // se todas conexoes tem marcas que atendem peso do arco  
+                // && se existem conexoes, porque se não houver não está habilitada
+                return _conexoesEntrada.All(con => con.Peso <= con.Lugar.Marcas) 
+                    && _conexoesEntrada.ToArray().Length>0;
+            }
+        }
 
         public IReadOnlyCollection<Conexao> ConexoesEntrada => _conexoesEntrada.AsReadOnly();
         public IReadOnlyCollection<Conexao> ConexoesSaida => _conexoesSaida.AsReadOnly();

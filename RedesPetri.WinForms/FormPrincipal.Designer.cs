@@ -34,7 +34,7 @@ namespace RedesPetri.WinForms
             this.btCriarLugar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numeroDeMarcas = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtIdNovaTransicao = new System.Windows.Forms.TextBox();
@@ -42,7 +42,7 @@ namespace RedesPetri.WinForms
             this.label3 = new System.Windows.Forms.Label();
             this.groupBoxConexao = new System.Windows.Forms.GroupBox();
             this.btCriarConexao = new System.Windows.Forms.Button();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.pesoTransicaoEntrada = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -61,10 +61,10 @@ namespace RedesPetri.WinForms
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeroDeMarcas)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBoxConexao.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pesoTransicaoEntrada)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pesoTransicaoSaida)).BeginInit();
             this.SuspendLayout();
@@ -115,7 +115,7 @@ namespace RedesPetri.WinForms
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.numericUpDown1);
+            this.groupBox1.Controls.Add(this.numeroDeMarcas);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.btCriarLugar);
             this.groupBox1.Controls.Add(this.label1);
@@ -129,13 +129,13 @@ namespace RedesPetri.WinForms
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lugar";
             // 
-            // numericUpDown1
+            // numeroDeMarcas
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(167, 49);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(93, 27);
-            this.numericUpDown1.TabIndex = 4;
+            this.numeroDeMarcas.Location = new System.Drawing.Point(167, 49);
+            this.numeroDeMarcas.Margin = new System.Windows.Forms.Padding(4);
+            this.numeroDeMarcas.Name = "numeroDeMarcas";
+            this.numeroDeMarcas.Size = new System.Drawing.Size(93, 27);
+            this.numeroDeMarcas.TabIndex = 4;
             // 
             // label2
             // 
@@ -188,7 +188,7 @@ namespace RedesPetri.WinForms
             // groupBoxConexao
             // 
             this.groupBoxConexao.Controls.Add(this.btCriarConexao);
-            this.groupBoxConexao.Controls.Add(this.numericUpDown2);
+            this.groupBoxConexao.Controls.Add(this.pesoTransicaoEntrada);
             this.groupBoxConexao.Controls.Add(this.label6);
             this.groupBoxConexao.Controls.Add(this.label5);
             this.groupBoxConexao.Controls.Add(this.label4);
@@ -211,19 +211,19 @@ namespace RedesPetri.WinForms
             this.btCriarConexao.UseVisualStyleBackColor = true;
             this.btCriarConexao.Click += new System.EventHandler(this.btCriarConexao_Click);
             // 
-            // numericUpDown2
+            // pesoTransicaoEntrada
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(321, 51);
-            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(4);
-            this.numericUpDown2.Minimum = new decimal(new int[] {
+            this.pesoTransicaoEntrada.Location = new System.Drawing.Point(321, 51);
+            this.pesoTransicaoEntrada.Margin = new System.Windows.Forms.Padding(4);
+            this.pesoTransicaoEntrada.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(93, 27);
-            this.numericUpDown2.TabIndex = 6;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.pesoTransicaoEntrada.Name = "pesoTransicaoEntrada";
+            this.pesoTransicaoEntrada.Size = new System.Drawing.Size(93, 27);
+            this.pesoTransicaoEntrada.TabIndex = 6;
+            this.pesoTransicaoEntrada.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -409,17 +409,17 @@ namespace RedesPetri.WinForms
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Rede de Petri";
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeroDeMarcas)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBoxConexao.ResumeLayout(false);
             this.groupBoxConexao.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pesoTransicaoEntrada)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pesoTransicaoSaida)).EndInit();
@@ -435,7 +435,7 @@ namespace RedesPetri.WinForms
         private System.Windows.Forms.Button btCriarLugar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numeroDeMarcas;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtIdNovaTransicao;
@@ -443,7 +443,7 @@ namespace RedesPetri.WinForms
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBoxConexao;
         private System.Windows.Forms.Button btCriarConexao;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown pesoTransicaoEntrada;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;

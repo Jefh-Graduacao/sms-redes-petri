@@ -103,10 +103,10 @@ namespace RedesPetri.WinForms
             if (!int.TryParse(textBox1.Text, out var id))
                 return;
 
-            if (numericUpDown1.Value < 0)
+            if (numeroDeMarcas.Value < 0)
                 return;
             
-            bool lugarCriado = _rede.CriarLugar(id, Convert.ToInt32(numericUpDown1.Value));
+            bool lugarCriado = _rede.CriarLugar(id, Convert.ToInt32(numeroDeMarcas.Value));
             if(lugarCriado)
                 _listaLugares.Add(id);
 
@@ -118,8 +118,9 @@ namespace RedesPetri.WinForms
             if (!int.TryParse(txtIdNovaTransicao.Text, out var id))
                 return;
 
-            _rede.CriarTransicao(id);
-            _listaTransicoes.Add(id);
+            bool transicaoCriada = _rede.CriarTransicao(id);
+            if(transicaoCriada)
+                _listaTransicoes.Add(id);
 
             RedesenharGrid();
         }
@@ -128,7 +129,7 @@ namespace RedesPetri.WinForms
         {
             var lugar = _rede.ObterLugar((int)comboLugares.SelectedValue);
             var transicao = _rede.ObterTransicao((int)comboTransicoes.SelectedValue);
-            var peso = Convert.ToInt32(numericUpDown2.Value);            
+            var peso = Convert.ToInt32(pesoTransicaoEntrada.Value);            
 
              if (peso < 1)
                 return;
