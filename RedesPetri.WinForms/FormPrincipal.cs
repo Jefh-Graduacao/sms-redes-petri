@@ -10,6 +10,7 @@ namespace RedesPetri.WinForms
     {
         private readonly RedePetri _rede = new();
 
+        private readonly BindingList<TipoConexao> _listaTipos = new();
         private readonly BindingList<int> _listaLugares = new();
         private readonly BindingList<int> _listaTransicoes = new();
 
@@ -22,8 +23,7 @@ namespace RedesPetri.WinForms
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            /*
-             * Padrão básico
+            /** Padrão básico
             _rede.CriarLugar(1, 2);
             _rede.CriarLugar(2);
             _rede.CriarLugar(3);
@@ -31,16 +31,15 @@ namespace RedesPetri.WinForms
             _rede.CriarTransicao(1);
             _rede.CriarTransicao(2);
             
-            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1));
+            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1),TipoConexao.Normal);
             _rede.CriarConexao(_rede.ObterTransicao(1), (_rede.ObterLugar(2), 1));
 
-            _rede.CriarConexao(_rede.ObterLugar(2), (_rede.ObterTransicao(2), 1));
+            _rede.CriarConexao(_rede.ObterLugar(2), (_rede.ObterTransicao(2), 1),TipoConexao.Normal);
             _rede.CriarConexao(_rede.ObterTransicao(2), (_rede.ObterLugar(3), 1));
 
-            */
+            //*/
 
-            /*
-             * Resolução de concorrência
+            /* Resolução de concorrência
             _rede.CriarLugar(1, 1);
             _rede.CriarLugar(2);
             _rede.CriarLugar(3);
@@ -48,14 +47,14 @@ namespace RedesPetri.WinForms
             _rede.CriarTransicao(1);
             _rede.CriarTransicao(2);
 
-            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1));
-            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(2), 1));
+            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1),TipoConexao.Normal);
+            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(2), 1),TipoConexao.Normal);
 
             _rede.CriarConexao(_rede.ObterTransicao(1), (_rede.ObterLugar(2), 1));
             _rede.CriarConexao(_rede.ObterTransicao(2), (_rede.ObterLugar(3), 1));
-            */
+            //*/
 
-            /* Exemplo do enunciado
+            //* Exemplo do enunciado
             _rede.CriarLugar(1, 2);
             _rede.CriarLugar(2);
             _rede.CriarLugar(3, 2);
@@ -70,13 +69,13 @@ namespace RedesPetri.WinForms
             _rede.CriarTransicao(3);
             _rede.CriarTransicao(4);
 
-            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1));
-            _rede.CriarConexao(_rede.ObterLugar(2), (_rede.ObterTransicao(2), 1));
-            _rede.CriarConexao(_rede.ObterLugar(3), (_rede.ObterTransicao(2), 2));
-            _rede.CriarConexao(_rede.ObterLugar(5), (_rede.ObterTransicao(2), 3));
-            _rede.CriarConexao(_rede.ObterLugar(4), (_rede.ObterTransicao(3), 1));
-            _rede.CriarConexao(_rede.ObterLugar(6), (_rede.ObterTransicao(4), 1));
-            _rede.CriarConexao(_rede.ObterLugar(7), (_rede.ObterTransicao(4), 1));
+            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1),TipoConexao.Normal);
+            _rede.CriarConexao(_rede.ObterLugar(2), (_rede.ObterTransicao(2), 1),TipoConexao.Normal);
+            _rede.CriarConexao(_rede.ObterLugar(3), (_rede.ObterTransicao(2), 2),TipoConexao.Normal);
+            _rede.CriarConexao(_rede.ObterLugar(5), (_rede.ObterTransicao(2), 3),TipoConexao.Normal);
+            _rede.CriarConexao(_rede.ObterLugar(4), (_rede.ObterTransicao(3), 1),TipoConexao.Normal);
+            _rede.CriarConexao(_rede.ObterLugar(6), (_rede.ObterTransicao(4), 1),TipoConexao.Normal);
+            _rede.CriarConexao(_rede.ObterLugar(7), (_rede.ObterTransicao(4), 1),TipoConexao.Normal);
 
             _rede.CriarConexao(_rede.ObterTransicao(1), (_rede.ObterLugar(2), 1));
             _rede.CriarConexao(_rede.ObterTransicao(2), (_rede.ObterLugar(4), 1));
@@ -85,11 +84,43 @@ namespace RedesPetri.WinForms
             _rede.CriarConexao(_rede.ObterTransicao(3), (_rede.ObterLugar(6), 1));
             _rede.CriarConexao(_rede.ObterTransicao(4), (_rede.ObterLugar(8), 1));
             _rede.CriarConexao(_rede.ObterTransicao(4), (_rede.ObterLugar(5), 3));
-            */
+           // */
 
+
+            /* Teste arco inibidor
+             _rede.CriarLugar(1, 1);
+             _rede.CriarLugar(2, 1);
+             _rede.CriarLugar(3);
+
+             _rede.CriarTransicao(1);
+
+            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1),TipoConexao.Inibidor);
+            _rede.CriarConexao(_rede.ObterLugar(2), (_rede.ObterTransicao(1), 1), TipoConexao.Normal);
+
+            _rede.CriarConexao(_rede.ObterTransicao(1), (_rede.ObterLugar(2), 1));
+             //*/
+
+
+            /* Teste arco reset
+             _rede.CriarLugar(1, 11);
+             _rede.CriarLugar(2, 1);
+             _rede.CriarLugar(3);
+
+             _rede.CriarTransicao(1);
+
+            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1),TipoConexao.Reset);
+            _rede.CriarConexao(_rede.ObterLugar(2), (_rede.ObterTransicao(1), 1), TipoConexao.Normal);
+
+            _rede.CriarConexao(_rede.ObterTransicao(1), (_rede.ObterLugar(3), 1));
+             //*/
 
             RedesenharGrid();
             AtualizarConexoes();
+
+            comboBoxTipoCon.DataSource = _listaTipos;
+            _listaTipos.Add(TipoConexao.Normal);
+            _listaTipos.Add(TipoConexao.Inibidor);
+            _listaTipos.Add(TipoConexao.Reset);
 
             comboLugares.DataSource = _listaLugares;
             comboTransicoes.DataSource = _listaTransicoes;
@@ -129,12 +160,13 @@ namespace RedesPetri.WinForms
         {
             var lugar = _rede.ObterLugar((int)comboLugares.SelectedValue);
             var transicao = _rede.ObterTransicao((int)comboTransicoes.SelectedValue);
-            var peso = Convert.ToInt32(pesoTransicaoEntrada.Value);            
+            var peso = Convert.ToInt32(pesoTransicaoEntrada.Value);
+            TipoConexao tipoConexao = (TipoConexao) comboBoxTipoCon.SelectedValue;
 
              if (peso < 1)
                 return;
 
-            _rede.CriarConexao(lugar, (transicao, peso));
+            _rede.CriarConexao(lugar, (transicao, peso), tipoConexao);
 
             RedesenharGrid();
             AtualizarConexoes();
@@ -174,7 +206,8 @@ namespace RedesPetri.WinForms
                 dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     Name = id,
-                    HeaderText = id
+                    HeaderText = id,
+                    Width = 100
                 });
             }
 
@@ -196,7 +229,17 @@ namespace RedesPetri.WinForms
                         ? $"T{conexao.Transicao.Id} -> L{conexao.Lugar.Id}"
                         : $"L{conexao.Lugar.Id} -> T{conexao.Transicao.Id}";
 
-                    return new ListViewItem($"{descConexao} \t Peso ({conexao.Peso})");
+                    var tipo = "";
+                    if(conexao.Direcao == DirecaoConexao.EntradaTransicao) { 
+                        if (conexao.tipoConexao == TipoConexao.Normal)
+                            tipo = " Tipo N";
+                        else if (conexao.tipoConexao == TipoConexao.Inibidor)
+                            tipo = " Tipo I";
+                        else if (conexao.tipoConexao == TipoConexao.Reset)
+                            tipo = " Tipo R";
+                    }
+
+                    return new ListViewItem($"{descConexao} \t Peso ({conexao.Peso}){tipo}");
                 })
                 .ToArray();
 

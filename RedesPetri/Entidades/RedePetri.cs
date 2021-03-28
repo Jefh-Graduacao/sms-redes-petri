@@ -66,10 +66,10 @@ namespace RedesPetri.Entidades
         }
 
         //Método para criar Conexão do Lugar para uma Transição
-        public void CriarConexao(Lugar lugar, (Transicao transicao, int peso) conexao)
+        public void CriarConexao(Lugar lugar, (Transicao transicao, int peso) conexao, TipoConexao tipoConexao)
         {
             var (transicao, peso) = conexao;
-            transicao.CriarConexaoEntrada(lugar, peso);
+            transicao.CriarConexaoEntrada(lugar, peso, tipoConexao);
         }
 
         //Método para criar Conexão de uma Transição para um Lugar

@@ -14,7 +14,7 @@ namespace RedesPetri
             rede.CriarTransicao(1);
             rede.CriarTransicao(2);
 
-            rede.CriarConexao(rede.ObterLugar(1)!,  (rede.ObterTransicao(1)!, 1));
+            rede.CriarConexao(rede.ObterLugar(1)!,  (rede.ObterTransicao(1)!, 1), TipoConexao.Normal);
             rede.CriarConexao(rede.ObterTransicao(1)!, (rede.ObterLugar(2)!,1));
 
             rede.ImprimirRepresentacaoTextual();
