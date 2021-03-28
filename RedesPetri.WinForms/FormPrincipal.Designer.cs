@@ -40,14 +40,6 @@ namespace RedesPetri.WinForms
             this.txtIdNovaTransicao = new System.Windows.Forms.TextBox();
             this.btCriarTransicao = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.groupBoxConexao = new System.Windows.Forms.GroupBox();
-            this.btCriarConexao = new System.Windows.Forms.Button();
-            this.pesoTransicaoEntrada = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboTransicoes = new System.Windows.Forms.ComboBox();
-            this.comboLugares = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btCriarTransicaoSaida = new System.Windows.Forms.Button();
             this.pesoTransicaoSaida = new System.Windows.Forms.NumericUpDown();
@@ -59,16 +51,24 @@ namespace RedesPetri.WinForms
             this.listViewConexoes = new System.Windows.Forms.ListView();
             this.btExecutarCiclo = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.comboLugares = new System.Windows.Forms.ComboBox();
+            this.comboTransicoes = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.pesoTransicaoEntrada = new System.Windows.Forms.NumericUpDown();
+            this.btCriarConexao = new System.Windows.Forms.Button();
             this.comboBoxTipoCon = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.groupBoxConexao = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeroDeMarcas)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBoxConexao.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pesoTransicaoEntrada)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pesoTransicaoSaida)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pesoTransicaoEntrada)).BeginInit();
+            this.groupBoxConexao.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -92,7 +92,7 @@ namespace RedesPetri.WinForms
             this.textBox1.Location = new System.Drawing.Point(8, 50);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(149, 32);
+            this.textBox1.Size = new System.Drawing.Size(149, 27);
             this.textBox1.TabIndex = 1;
             // 
             // btCriarLugar
@@ -112,7 +112,7 @@ namespace RedesPetri.WinForms
             this.label1.Location = new System.Drawing.Point(6, 27);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 24);
+            this.label1.Size = new System.Drawing.Size(24, 19);
             this.label1.TabIndex = 3;
             this.label1.Text = "Id";
             // 
@@ -137,7 +137,7 @@ namespace RedesPetri.WinForms
             this.numeroDeMarcas.Location = new System.Drawing.Point(167, 49);
             this.numeroDeMarcas.Margin = new System.Windows.Forms.Padding(4);
             this.numeroDeMarcas.Name = "numeroDeMarcas";
-            this.numeroDeMarcas.Size = new System.Drawing.Size(93, 32);
+            this.numeroDeMarcas.Size = new System.Drawing.Size(93, 27);
             this.numeroDeMarcas.TabIndex = 4;
             // 
             // label2
@@ -146,7 +146,7 @@ namespace RedesPetri.WinForms
             this.label2.Location = new System.Drawing.Point(165, 26);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 24);
+            this.label2.Size = new System.Drawing.Size(57, 19);
             this.label2.TabIndex = 5;
             this.label2.Text = "Marcas";
             // 
@@ -166,7 +166,7 @@ namespace RedesPetri.WinForms
             // 
             this.txtIdNovaTransicao.Location = new System.Drawing.Point(6, 50);
             this.txtIdNovaTransicao.Name = "txtIdNovaTransicao";
-            this.txtIdNovaTransicao.Size = new System.Drawing.Size(149, 32);
+            this.txtIdNovaTransicao.Size = new System.Drawing.Size(149, 27);
             this.txtIdNovaTransicao.TabIndex = 1;
             // 
             // btCriarTransicao
@@ -184,101 +184,9 @@ namespace RedesPetri.WinForms
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 27);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 24);
+            this.label3.Size = new System.Drawing.Size(24, 19);
             this.label3.TabIndex = 3;
             this.label3.Text = "Id";
-            // 
-            // groupBoxConexao
-            // 
-            this.groupBoxConexao.Controls.Add(this.label10);
-            this.groupBoxConexao.Controls.Add(this.comboBoxTipoCon);
-            this.groupBoxConexao.Controls.Add(this.btCriarConexao);
-            this.groupBoxConexao.Controls.Add(this.pesoTransicaoEntrada);
-            this.groupBoxConexao.Controls.Add(this.label6);
-            this.groupBoxConexao.Controls.Add(this.label5);
-            this.groupBoxConexao.Controls.Add(this.label4);
-            this.groupBoxConexao.Controls.Add(this.comboTransicoes);
-            this.groupBoxConexao.Controls.Add(this.comboLugares);
-            this.groupBoxConexao.Location = new System.Drawing.Point(483, 28);
-            this.groupBoxConexao.Name = "groupBoxConexao";
-            this.groupBoxConexao.Size = new System.Drawing.Size(422, 139);
-            this.groupBoxConexao.TabIndex = 7;
-            this.groupBoxConexao.TabStop = false;
-            this.groupBoxConexao.Text = "Conexão (Lugar -> Transição)";
-            // 
-            // btCriarConexao
-            // 
-            this.btCriarConexao.Location = new System.Drawing.Point(313, 95);
-            this.btCriarConexao.Name = "btCriarConexao";
-            this.btCriarConexao.Size = new System.Drawing.Size(101, 30);
-            this.btCriarConexao.TabIndex = 2;
-            this.btCriarConexao.Text = "Criar";
-            this.btCriarConexao.UseVisualStyleBackColor = true;
-            this.btCriarConexao.Click += new System.EventHandler(this.btCriarConexao_Click);
-            // 
-            // pesoTransicaoEntrada
-            // 
-            this.pesoTransicaoEntrada.Location = new System.Drawing.Point(321, 51);
-            this.pesoTransicaoEntrada.Margin = new System.Windows.Forms.Padding(4);
-            this.pesoTransicaoEntrada.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.pesoTransicaoEntrada.Name = "pesoTransicaoEntrada";
-            this.pesoTransicaoEntrada.Size = new System.Drawing.Size(93, 32);
-            this.pesoTransicaoEntrada.TabIndex = 6;
-            this.pesoTransicaoEntrada.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(319, 28);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 24);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Peso";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(163, 26);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 24);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Id Transição";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 26);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 24);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Id Lugar";
-            // 
-            // comboTransicoes
-            // 
-            this.comboTransicoes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboTransicoes.FormattingEnabled = true;
-            this.comboTransicoes.Location = new System.Drawing.Point(163, 50);
-            this.comboTransicoes.Name = "comboTransicoes";
-            this.comboTransicoes.Size = new System.Drawing.Size(151, 32);
-            this.comboTransicoes.TabIndex = 1;
-            // 
-            // comboLugares
-            // 
-            this.comboLugares.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboLugares.FormattingEnabled = true;
-            this.comboLugares.Location = new System.Drawing.Point(6, 50);
-            this.comboLugares.Name = "comboLugares";
-            this.comboLugares.Size = new System.Drawing.Size(151, 32);
-            this.comboLugares.TabIndex = 0;
             // 
             // groupBox3
             // 
@@ -316,7 +224,7 @@ namespace RedesPetri.WinForms
             0,
             0});
             this.pesoTransicaoSaida.Name = "pesoTransicaoSaida";
-            this.pesoTransicaoSaida.Size = new System.Drawing.Size(93, 32);
+            this.pesoTransicaoSaida.Size = new System.Drawing.Size(93, 27);
             this.pesoTransicaoSaida.TabIndex = 6;
             this.pesoTransicaoSaida.Value = new decimal(new int[] {
             1,
@@ -330,7 +238,7 @@ namespace RedesPetri.WinForms
             this.label7.Location = new System.Drawing.Point(319, 28);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(52, 24);
+            this.label7.Size = new System.Drawing.Size(42, 19);
             this.label7.TabIndex = 7;
             this.label7.Text = "Peso";
             // 
@@ -339,7 +247,7 @@ namespace RedesPetri.WinForms
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(163, 26);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(84, 24);
+            this.label8.Size = new System.Drawing.Size(69, 19);
             this.label8.TabIndex = 5;
             this.label8.Text = "Id Lugar";
             // 
@@ -348,7 +256,7 @@ namespace RedesPetri.WinForms
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(6, 26);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(120, 24);
+            this.label9.Size = new System.Drawing.Size(97, 19);
             this.label9.TabIndex = 4;
             this.label9.Text = "Id Transição";
             // 
@@ -358,7 +266,7 @@ namespace RedesPetri.WinForms
             this.comboLugares2.FormattingEnabled = true;
             this.comboLugares2.Location = new System.Drawing.Point(163, 50);
             this.comboLugares2.Name = "comboLugares2";
-            this.comboLugares2.Size = new System.Drawing.Size(151, 32);
+            this.comboLugares2.Size = new System.Drawing.Size(151, 27);
             this.comboLugares2.TabIndex = 1;
             // 
             // comboTransicoes2
@@ -367,7 +275,7 @@ namespace RedesPetri.WinForms
             this.comboTransicoes2.FormattingEnabled = true;
             this.comboTransicoes2.Location = new System.Drawing.Point(6, 50);
             this.comboTransicoes2.Name = "comboTransicoes2";
-            this.comboTransicoes2.Size = new System.Drawing.Size(151, 32);
+            this.comboTransicoes2.Size = new System.Drawing.Size(151, 27);
             this.comboTransicoes2.TabIndex = 0;
             // 
             // listViewConexoes
@@ -399,27 +307,119 @@ namespace RedesPetri.WinForms
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // comboLugares
+            // 
+            this.comboLugares.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboLugares.FormattingEnabled = true;
+            this.comboLugares.Location = new System.Drawing.Point(6, 50);
+            this.comboLugares.Name = "comboLugares";
+            this.comboLugares.Size = new System.Drawing.Size(151, 27);
+            this.comboLugares.TabIndex = 0;
+            // 
+            // comboTransicoes
+            // 
+            this.comboTransicoes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboTransicoes.FormattingEnabled = true;
+            this.comboTransicoes.Location = new System.Drawing.Point(163, 50);
+            this.comboTransicoes.Name = "comboTransicoes";
+            this.comboTransicoes.Size = new System.Drawing.Size(151, 27);
+            this.comboTransicoes.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(69, 19);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Id Lugar";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(163, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(97, 19);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Id Transição";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(319, 28);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 19);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Peso";
+            // 
+            // pesoTransicaoEntrada
+            // 
+            this.pesoTransicaoEntrada.Location = new System.Drawing.Point(321, 51);
+            this.pesoTransicaoEntrada.Margin = new System.Windows.Forms.Padding(4);
+            this.pesoTransicaoEntrada.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.pesoTransicaoEntrada.Name = "pesoTransicaoEntrada";
+            this.pesoTransicaoEntrada.Size = new System.Drawing.Size(93, 27);
+            this.pesoTransicaoEntrada.TabIndex = 6;
+            this.pesoTransicaoEntrada.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // btCriarConexao
+            // 
+            this.btCriarConexao.Location = new System.Drawing.Point(313, 95);
+            this.btCriarConexao.Name = "btCriarConexao";
+            this.btCriarConexao.Size = new System.Drawing.Size(101, 30);
+            this.btCriarConexao.TabIndex = 2;
+            this.btCriarConexao.Text = "Criar";
+            this.btCriarConexao.UseVisualStyleBackColor = true;
+            this.btCriarConexao.Click += new System.EventHandler(this.btCriarConexao_Click);
+            // 
             // comboBoxTipoCon
             // 
             this.comboBoxTipoCon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipoCon.FormattingEnabled = true;
-            this.comboBoxTipoCon.Location = new System.Drawing.Point(156, 93);
+            this.comboBoxTipoCon.Location = new System.Drawing.Point(156, 97);
             this.comboBoxTipoCon.Name = "comboBoxTipoCon";
-            this.comboBoxTipoCon.Size = new System.Drawing.Size(151, 32);
+            this.comboBoxTipoCon.Size = new System.Drawing.Size(151, 27);
             this.comboBoxTipoCon.TabIndex = 8;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 95);
+            this.label10.Location = new System.Drawing.Point(43, 101);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(132, 24);
+            this.label10.Size = new System.Drawing.Size(107, 19);
             this.label10.TabIndex = 9;
             this.label10.Text = "Tipo Conexão";
             // 
+            // groupBoxConexao
+            // 
+            this.groupBoxConexao.Controls.Add(this.label10);
+            this.groupBoxConexao.Controls.Add(this.comboBoxTipoCon);
+            this.groupBoxConexao.Controls.Add(this.btCriarConexao);
+            this.groupBoxConexao.Controls.Add(this.pesoTransicaoEntrada);
+            this.groupBoxConexao.Controls.Add(this.label6);
+            this.groupBoxConexao.Controls.Add(this.label5);
+            this.groupBoxConexao.Controls.Add(this.label4);
+            this.groupBoxConexao.Controls.Add(this.comboTransicoes);
+            this.groupBoxConexao.Controls.Add(this.comboLugares);
+            this.groupBoxConexao.Location = new System.Drawing.Point(483, 28);
+            this.groupBoxConexao.Name = "groupBoxConexao";
+            this.groupBoxConexao.Size = new System.Drawing.Size(422, 139);
+            this.groupBoxConexao.TabIndex = 7;
+            this.groupBoxConexao.TabStop = false;
+            this.groupBoxConexao.Text = "Conexão (Lugar -> Transição)";
+            // 
             // FormPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1492, 875);
             this.Controls.Add(this.toolStrip1);
@@ -441,12 +441,12 @@ namespace RedesPetri.WinForms
             ((System.ComponentModel.ISupportInitialize)(this.numeroDeMarcas)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBoxConexao.ResumeLayout(false);
-            this.groupBoxConexao.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pesoTransicaoEntrada)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pesoTransicaoSaida)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pesoTransicaoEntrada)).EndInit();
+            this.groupBoxConexao.ResumeLayout(false);
+            this.groupBoxConexao.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -465,14 +465,6 @@ namespace RedesPetri.WinForms
         private System.Windows.Forms.TextBox txtIdNovaTransicao;
         private System.Windows.Forms.Button btCriarTransicao;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBoxConexao;
-        private System.Windows.Forms.Button btCriarConexao;
-        private System.Windows.Forms.NumericUpDown pesoTransicaoEntrada;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboTransicoes;
-        private System.Windows.Forms.ComboBox comboLugares;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btCriarTransicaoSaida;
         private System.Windows.Forms.NumericUpDown pesoTransicaoSaida;
@@ -484,8 +476,16 @@ namespace RedesPetri.WinForms
         private System.Windows.Forms.ListView listViewConexoes;
         private System.Windows.Forms.Button btExecutarCiclo;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboLugares;
+        private System.Windows.Forms.ComboBox comboTransicoes;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown pesoTransicaoEntrada;
+        private System.Windows.Forms.Button btCriarConexao;
         private System.Windows.Forms.ComboBox comboBoxTipoCon;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.GroupBox groupBoxConexao;
     }
 }
 

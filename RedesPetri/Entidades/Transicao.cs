@@ -21,19 +21,27 @@ namespace RedesPetri.Entidades
 
                 List<bool> _listaResults = new();
 
-                foreach (var con in _conexoesEntrada){
-                    if(con.Peso <= con.Lugar.Marcas && con.tipoConexao == TipoConexao.Normal){
+                foreach (var con in _conexoesEntrada)
+                {
+                    if (con.Peso <= con.Lugar.Marcas && con.tipoConexao == TipoConexao.Normal)
+                    {
                         // tipo normal habilita se estiver com marcas maiores ou igual ao peso do arco
                         _listaResults.Add(true);
-                    } else if(con.Lugar.Marcas < con.Peso  && con.tipoConexao == TipoConexao.Inibidor){
+                    }
+                    else if (con.Lugar.Marcas < con.Peso && con.tipoConexao == TipoConexao.Inibidor)
+                    {
                         // tipo inibidor habilita se estiver com menos marcas que peso do arco
                         _listaResults.Add(true);
-                    } else if(con.tipoConexao == TipoConexao.Reset){
+                    }
+                    else if (con.tipoConexao == TipoConexao.Reset)
+                    {
                         // tipo reset habilita mesmo sem marcas
                         _listaResults.Add(true);
-                    } else {
+                    }
+                    else
+                    {
                         // senao for nenhum caso acima desabilita
-                       _listaResults.Add(false);
+                        _listaResults.Add(false);
                     }
                 }
 
@@ -49,10 +57,10 @@ namespace RedesPetri.Entidades
         public IReadOnlyCollection<Conexao> ConexoesSaida => _conexoesSaida.AsReadOnly();
         public IReadOnlyCollection<Conexao> TodasConexoes => _conexoesEntrada.Concat(_conexoesSaida).ToArray();
 
-        public void CriarConexaoEntrada(Lugar lugar, int peso, TipoConexao tipoConexao) => 
+        public void CriarConexaoEntrada(Lugar lugar, int peso, TipoConexao tipoConexao) =>
             _conexoesEntrada.Add(new(lugar, peso, this, DirecaoConexao.EntradaTransicao, tipoConexao));
 
-        public void CriarConexaoSaida(Lugar lugar, int peso) => 
+        public void CriarConexaoSaida(Lugar lugar, int peso) =>
             _conexoesSaida.Add(new(lugar, peso, this, DirecaoConexao.SaidaTransicao, TipoConexao.Normal));
 
         public void Ativar() => Ativa = true;
@@ -60,16 +68,20 @@ namespace RedesPetri.Entidades
 
         public void ConsumirMarcas()
         {
-            foreach (var (lugar, peso, _, _,tipoConexao) in _conexoesEntrada){
-                if(tipoConexao==TipoConexao.Reset){
+            foreach (var (lugar, peso, _, _, tipoConexao) in _conexoesEntrada)
+            {
+                if (tipoConexao == TipoConexao.Reset)
+                {
                     //reset consome todas marcas
                     lugar.ConsumirMarcas(lugar.Marcas);
-                } else if (tipoConexao==TipoConexao.Normal){
+                }
+                else if (tipoConexao == TipoConexao.Normal)
+                {
                     //normal consome marcas igual ao peso
                     lugar.ConsumirMarcas(peso);
                 }
             }
-            foreach (var (lugar, peso, _, _,_) in _conexoesSaida)
+            foreach (var (lugar, peso, _, _, _) in _conexoesSaida)
                 lugar.ProduzirMarcas(peso);
         }
     }
