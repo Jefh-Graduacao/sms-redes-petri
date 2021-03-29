@@ -1,20 +1,23 @@
 ﻿using RedesPetri.Entidades;
+using Shields.GraphViz.Components;
+using Shields.GraphViz.Models;
+using Shields.GraphViz.Services;
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RedesPetri.WinForms
 {
     public partial class FormPrincipal : Form
     {
-        private readonly RedePetri _rede = new();
+        private RedePetri _rede = new();
 
-        private readonly BindingList<TipoConexao> _listaTipos = new();
-        private readonly BindingList<int> _listaLugares = new();
-        private readonly BindingList<int> _listaTransicoes = new();
-
-        private int _cicloAtual = 0;
+        private BindingList<int> _listaLugares = new();
+        private BindingList<int> _listaTransicoes = new();
 
         public FormPrincipal()
         {
@@ -23,110 +26,32 @@ namespace RedesPetri.WinForms
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            /** Padrão básico
-            _rede.CriarLugar(1, 2);
-            _rede.CriarLugar(2);
-            _rede.CriarLugar(3);
+            comboBoxTipoCon.DataSource = new BindingList<TipoArco>(new[]
+            {
+                TipoArco.Normal,
+                TipoArco.Normal,
+                TipoArco.Reset
+            });
 
-            _rede.CriarTransicao(1);
-            _rede.CriarTransicao(2);
-            
-            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1),TipoConexao.Normal);
-            _rede.CriarConexao(_rede.ObterTransicao(1), (_rede.ObterLugar(2), 1));
+            comboExemplos.DataSource = ExemplosProntos.Redes.Keys.ToArray();
+            CarregarRedeNaTela();
+        }
 
-            _rede.CriarConexao(_rede.ObterLugar(2), (_rede.ObterTransicao(2), 1),TipoConexao.Normal);
-            _rede.CriarConexao(_rede.ObterTransicao(2), (_rede.ObterLugar(3), 1));
-
-            //*/
-
-            /* Resolução de concorrência
-            _rede.CriarLugar(1, 1);
-            _rede.CriarLugar(2);
-            _rede.CriarLugar(3);
-
-            _rede.CriarTransicao(1);
-            _rede.CriarTransicao(2);
-
-            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1),TipoConexao.Normal);
-            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(2), 1),TipoConexao.Normal);
-
-            _rede.CriarConexao(_rede.ObterTransicao(1), (_rede.ObterLugar(2), 1));
-            _rede.CriarConexao(_rede.ObterTransicao(2), (_rede.ObterLugar(3), 1));
-            //*/
-
-            //* Exemplo do enunciado
-            _rede.CriarLugar(1, 2);
-            _rede.CriarLugar(2);
-            _rede.CriarLugar(3, 2);
-            _rede.CriarLugar(4);
-            _rede.CriarLugar(5, 5);
-            _rede.CriarLugar(6);
-            _rede.CriarLugar(7);
-            _rede.CriarLugar(8);
-
-            _rede.CriarTransicao(1);
-            _rede.CriarTransicao(2);
-            _rede.CriarTransicao(3);
-            _rede.CriarTransicao(4);
-
-            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1),TipoConexao.Normal);
-            _rede.CriarConexao(_rede.ObterLugar(2), (_rede.ObterTransicao(2), 1),TipoConexao.Normal);
-            _rede.CriarConexao(_rede.ObterLugar(3), (_rede.ObterTransicao(2), 2),TipoConexao.Normal);
-            _rede.CriarConexao(_rede.ObterLugar(5), (_rede.ObterTransicao(2), 3),TipoConexao.Normal);
-            _rede.CriarConexao(_rede.ObterLugar(4), (_rede.ObterTransicao(3), 1),TipoConexao.Normal);
-            _rede.CriarConexao(_rede.ObterLugar(6), (_rede.ObterTransicao(4), 1),TipoConexao.Normal);
-            _rede.CriarConexao(_rede.ObterLugar(7), (_rede.ObterTransicao(4), 1),TipoConexao.Normal);
-
-            _rede.CriarConexao(_rede.ObterTransicao(1), (_rede.ObterLugar(2), 1));
-            _rede.CriarConexao(_rede.ObterTransicao(2), (_rede.ObterLugar(4), 1));
-            _rede.CriarConexao(_rede.ObterTransicao(3), (_rede.ObterLugar(3), 2));
-            _rede.CriarConexao(_rede.ObterTransicao(3), (_rede.ObterLugar(7), 1));
-            _rede.CriarConexao(_rede.ObterTransicao(3), (_rede.ObterLugar(6), 1));
-            _rede.CriarConexao(_rede.ObterTransicao(4), (_rede.ObterLugar(8), 1));
-            _rede.CriarConexao(_rede.ObterTransicao(4), (_rede.ObterLugar(5), 3));
-           // */
-
-
-            /* Teste arco inibidor
-             _rede.CriarLugar(1, 1);
-             _rede.CriarLugar(2, 1);
-             _rede.CriarLugar(3);
-
-             _rede.CriarTransicao(1);
-
-            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1),TipoConexao.Inibidor);
-            _rede.CriarConexao(_rede.ObterLugar(2), (_rede.ObterTransicao(1), 1), TipoConexao.Normal);
-
-            _rede.CriarConexao(_rede.ObterTransicao(1), (_rede.ObterLugar(2), 1));
-             //*/
-
-
-            /* Teste arco reset
-             _rede.CriarLugar(1, 11);
-             _rede.CriarLugar(2, 1);
-             _rede.CriarLugar(3);
-
-             _rede.CriarTransicao(1);
-
-            _rede.CriarConexao(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1),TipoConexao.Reset);
-            _rede.CriarConexao(_rede.ObterLugar(2), (_rede.ObterTransicao(1), 1), TipoConexao.Normal);
-
-            _rede.CriarConexao(_rede.ObterTransicao(1), (_rede.ObterLugar(3), 1));
-             //*/
-
-            RedesenharGrid();
-            AtualizarConexoes();
-
-            comboBoxTipoCon.DataSource = _listaTipos;
-            _listaTipos.Add(TipoConexao.Normal);
-            _listaTipos.Add(TipoConexao.Inibidor);
-            _listaTipos.Add(TipoConexao.Reset);
+        private void CarregarRedeNaTela()
+        {
+            _listaLugares = new BindingList<int>(_rede.Lugares.Select(x => x.Id).ToList());
+            _listaTransicoes = new BindingList<int>(_rede.Transicoes.Select(x => x.Id).ToList());
 
             comboLugares.DataSource = _listaLugares;
             comboTransicoes.DataSource = _listaTransicoes;
 
             comboLugares2.DataSource = _listaLugares;
             comboTransicoes2.DataSource = _listaTransicoes;
+
+            RedesenharGrid();
+            AtualizarConexoes();
+
+            btExecutarCiclo.Enabled = true;
         }
 
         private void btCriarLugar_Click(object sender, EventArgs e)
@@ -136,9 +61,9 @@ namespace RedesPetri.WinForms
 
             if (numeroDeMarcas.Value < 0)
                 return;
-            
+
             bool lugarCriado = _rede.CriarLugar(id, Convert.ToInt32(numeroDeMarcas.Value));
-            if(lugarCriado)
+            if (lugarCriado)
                 _listaLugares.Add(id);
 
             RedesenharGrid();
@@ -150,7 +75,7 @@ namespace RedesPetri.WinForms
                 return;
 
             bool transicaoCriada = _rede.CriarTransicao(id);
-            if(transicaoCriada)
+            if (transicaoCriada)
                 _listaTransicoes.Add(id);
 
             RedesenharGrid();
@@ -161,12 +86,12 @@ namespace RedesPetri.WinForms
             var lugar = _rede.ObterLugar((int)comboLugares.SelectedValue);
             var transicao = _rede.ObterTransicao((int)comboTransicoes.SelectedValue);
             var peso = Convert.ToInt32(pesoTransicaoEntrada.Value);
-            TipoConexao tipoConexao = (TipoConexao) comboBoxTipoCon.SelectedValue;
+            TipoArco tipoConexao = (TipoArco)comboBoxTipoCon.SelectedValue;
 
-             if (peso < 1)
+            if (peso < 1)
                 return;
 
-            _rede.CriarConexao(lugar, (transicao, peso), tipoConexao);
+            _rede.CriarArco(lugar, (transicao, peso), tipoConexao);
 
             RedesenharGrid();
             AtualizarConexoes();
@@ -181,7 +106,7 @@ namespace RedesPetri.WinForms
             if (peso < 1)
                 return;
 
-            _rede.CriarConexao(transicao, (lugar, peso));
+            _rede.CriarArco(transicao, (lugar, peso));
 
             RedesenharGrid();
             AtualizarConexoes();
@@ -200,7 +125,7 @@ namespace RedesPetri.WinForms
                 HeaderText = "Núm do Ciclo",
                 Width = 200
             });
-            
+
             foreach (var id in _rede.LugaresTransicoes.Select(lt => lt.id))
             {
                 dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
@@ -211,7 +136,7 @@ namespace RedesPetri.WinForms
                 });
             }
 
-            dataGridView1.Rows.Add((new[] { _cicloAtual.ToString() }).Concat(_rede.LugaresTransicoes.Select(lt => lt.valor)).ToArray());
+            dataGridView1.Rows.Add((new[] { _rede.CicloAtual.ToString() }).Concat(_rede.LugaresTransicoes.Select(lt => lt.valor)).ToArray());
         }
 
         private void RedesenharGrid()
@@ -223,23 +148,24 @@ namespace RedesPetri.WinForms
         private void AtualizarConexoes()
         {
             var itensListView = _rede.Transicoes.SelectMany(transicao => transicao.TodasConexoes)
-                .Select(conexao =>
+                .Select(arco =>
                 {
-                    var descConexao = conexao.Direcao == DirecaoConexao.SaidaTransicao
-                        ? $"T{conexao.Transicao.Id} -> L{conexao.Lugar.Id}"
-                        : $"L{conexao.Lugar.Id} -> T{conexao.Transicao.Id}";
+                    var descConexao = arco.Direcao == DirecaoArco.SaidaTransicao
+                        ? $"T{arco.Transicao.Id} -> L{arco.Lugar.Id}"
+                        : $"L{arco.Lugar.Id} -> T{arco.Transicao.Id}";
 
                     var tipo = "";
-                    if(conexao.Direcao == DirecaoConexao.EntradaTransicao) { 
-                        if (conexao.tipoConexao == TipoConexao.Normal)
-                            tipo = " Tipo N";
-                        else if (conexao.tipoConexao == TipoConexao.Inibidor)
-                            tipo = " Tipo I";
-                        else if (conexao.tipoConexao == TipoConexao.Reset)
-                            tipo = " Tipo R";
+                    if (arco.Direcao == DirecaoArco.EntradaTransicao)
+                    {
+                        if (arco.Tipo == TipoArco.Normal)
+                            tipo = "(Tipo N)";
+                        else if (arco.Tipo == TipoArco.Inibidor)
+                            tipo = "(Tipo I)";
+                        else if (arco.Tipo == TipoArco.Reset)
+                            tipo = "(Tipo R)";
                     }
 
-                    return new ListViewItem($"{descConexao} \t Peso ({conexao.Peso}){tipo}");
+                    return new ListViewItem($"{descConexao} \t Peso {arco.Peso} {tipo}");
                 })
                 .ToArray();
 
@@ -258,8 +184,49 @@ namespace RedesPetri.WinForms
                 return;
             }
 
-            _cicloAtual += 1;
-            dataGridView1.Rows.Add((new[] { _cicloAtual.ToString() }).Concat(_rede.LugaresTransicoes.Select(lt => lt.valor)).ToArray());
+            AdicionarUltimoCicloNoGrid();
+        }
+
+        private void AdicionarUltimoCicloNoGrid() =>
+            dataGridView1.Rows.Add((new[] { _rede.CicloAtual.ToString() }).Concat(_rede.LugaresTransicoes.Select(lt => lt.valor)).ToArray());
+
+        private void btCarregarExemplo_Click(object sender, EventArgs e)
+        {
+            if (comboExemplos.SelectedItem is not string chaveRedeSelecionada)
+                return;
+
+            _rede = ExemplosProntos.Redes[chaveRedeSelecionada];
+            CarregarRedeNaTela();
+        }
+
+        private void btResetar_Click(object sender, EventArgs e)
+        {
+            _rede = new();
+            CarregarRedeNaTela();
+        }
+
+        private async void btExecutarTodosCiclos_Click(object sender, EventArgs e)
+        {
+            bool continuarExecucao = true;
+            while (continuarExecucao)
+            {
+                continuarExecucao = _rede.ExecutarCiclo();
+                if (continuarExecucao)
+                    AdicionarUltimoCicloNoGrid();
+
+                await Task.Delay(500);
+            }
+        }
+
+        private static async Task GerarImagem()
+        {
+            var graph = Graph.Undirected
+                .Add(EdgeStatement.For("a", "b"))
+                .Add(EdgeStatement.For("a", "c"));
+
+            var renderer = new Renderer("C:\\\\Program Files\\Graphviz\\bin");
+            using var file = File.Create("C:\\\\Users\\bueno\\Desktop\\graph.png");
+            await renderer.RunAsync(graph, file, RendererLayouts.Dot, RendererFormats.Png, CancellationToken.None);
         }
     }
 }

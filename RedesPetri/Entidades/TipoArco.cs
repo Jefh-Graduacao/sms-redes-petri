@@ -1,6 +1,6 @@
 namespace RedesPetri.Entidades
 {
-    public enum TipoConexao
+    public enum TipoArco
     {
         Normal,
         Inibidor,

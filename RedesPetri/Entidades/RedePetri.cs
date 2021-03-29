@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using static System.Console;
@@ -6,6 +7,7 @@ namespace RedesPetri.Entidades
 {
     public class RedePetri
     {
+        public int CicloAtual { get; private set; } = 0;
         public List<Lugar> Lugares { get; set; } = new();
         public List<Transicao> Transicoes { get; set; } = new();
 
@@ -14,20 +16,21 @@ namespace RedesPetri.Entidades
                 .Concat(Transicoes.Select(tr => ($"T{tr.Id}", tr.EstáHabilitada ? "S" : "N")))
                 .ToArray();
 
-        //Cria lugar se não existe
-        public bool CriarLugar(int id, int marcas = 0)
+        /// <summary>
+        /// Cria lugar se não existe
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="marcas"></param>
+        /// <param name="callbackMarcaProduzida"></param>
+        /// <param name="callbackMarcaConsumida"></param>
+        /// <returns></returns>
+        public bool CriarLugar(int id, int marcas = 0, Action<Lugar>? callbackMarcaProduzida = null, Action<Lugar>? callbackMarcaConsumida = null)
         {
-            bool jaExiste = false;
-            
-            foreach (Lugar a in Lugares)
-                if(a.Id == id)  jaExiste = true;
-
-            if(jaExiste){
+            if (ObterLugar(id) is not null)
                 return false;
-            } else{
-                Lugares.Add(new Lugar(id, marcas));
-                return true;
-            }
+
+            Lugares.Add(new Lugar(id, marcas, callbackMarcaProduzida, callbackMarcaConsumida));
+            return true;
         }
 
         // Obtem um lugar da rede
@@ -45,12 +48,12 @@ namespace RedesPetri.Entidades
         }
 
         // Cria Transição se ela nao existe
-        public bool CriarTransicao(int id)
+        public bool CriarTransicao(int id, Action<Transicao>? callbackTransicaoSaida = null)
         {
             if (ObterTransicao(id) is { })
                 return false;
 
-            Transicoes.Add(new(id));
+            Transicoes.Add(new(id, callbackTransicaoSaida));
             return true;
         }
 
@@ -65,26 +68,39 @@ namespace RedesPetri.Entidades
             return teveExclusao;
         }
 
-        //Método para criar Conexão do Lugar para uma Transição
-        public void CriarConexao(Lugar lugar, (Transicao transicao, int peso) conexao, TipoConexao tipoConexao)
+        /// <summary>
+        /// Criar um Arco de um <see cref="Lugar"/> para uma <see cref="Transicao" />
+        /// </summary>
+        /// <param name="lugar"></param>
+        /// <param name="conexao"></param>
+        /// <param name="tipoArco"></param>
+        public void CriarArco(Lugar lugar, (Transicao transicao, int peso) conexao, TipoArco tipoArco)
         {
             var (transicao, peso) = conexao;
-            transicao.CriarConexaoEntrada(lugar, peso, tipoConexao);
+            transicao.CriarArcoEntrada(lugar, peso, tipoArco);
         }
-
-        //Método para criar Conexão de uma Transição para um Lugar
-        public void CriarConexao(Transicao transicao, (Lugar lugar, int peso) conexao)
+                
+        /// <summary>
+        /// Criaum Arco de uma Transição para um Lugar
+        /// </summary>
+        /// <param name="transicao"></param>
+        /// <param name="conexao"></param>
+        public void CriarArco(Transicao transicao, (Lugar lugar, int peso) conexao)
         {
             var (lugar, peso) = conexao;
-            transicao.CriarConexaoSaida(lugar, peso);
+            transicao.CriarArcoSaida(lugar, peso);
         }
 
+        /// <summary>
+        /// Executa o ciclo atual da rede
+        /// </summary>
+        /// <returns><see cref="true"/> caso o ciclo tenha sido executado, <see cref="false"/> caso a execução tenha terminado</returns>
         public bool ExecutarCiclo()
         {
             // Todas tr habilitadas no início do ciclo
             var idsTransicoesHabilitadas = Transicoes.Where(tr => tr.EstáHabilitada).Select(tr => tr.Id).ToArray();
 
-            if (idsTransicoesHabilitadas.Length == 0) 
+            if (idsTransicoesHabilitadas.Length == 0)
                 return false;
 
             foreach (var transicao in Transicoes.ToArray())
@@ -100,6 +116,7 @@ namespace RedesPetri.Entidades
                 }
             }
 
+            CicloAtual += 1;
             return true;
         }
 

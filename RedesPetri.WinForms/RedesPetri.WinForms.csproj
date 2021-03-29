@@ -10,4 +10,8 @@
     <ProjectReference Include="..\RedesPetri\RedesPetri.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Shields.GraphViz" Version="1.0.2" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,6 @@
 ﻿namespace RedesPetri.Entidades
 {
-    public enum DirecaoConexao
+    public enum DirecaoArco
     {
         EntradaTransicao,
         SaidaTransicao
