@@ -5,7 +5,14 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedesPetri", "RedesPetri\RedesPetri.csproj", "{D3366922-2105-490B-B4C4-BAE28430C3D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedesPetri.WinForms", "RedesPetri.WinForms\RedesPetri.WinForms.csproj", "{58955363-56D1-44B3-A054-61E4FADA16E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedesPetri.WinForms", "RedesPetri.WinForms\RedesPetri.WinForms.csproj", "{58955363-56D1-44B3-A054-61E4FADA16E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6CCAE5AF-6F18-4265-920D-8AA03C8D5226}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

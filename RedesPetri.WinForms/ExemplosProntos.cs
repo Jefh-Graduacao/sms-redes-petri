@@ -88,34 +88,34 @@ namespace RedesPetri.WinForms
 
         public static RedePetri ArcoInibidor()
         {
-            var _rede = new RedePetri();
-            _rede.CriarLugar(1, 1);
-            _rede.CriarLugar(2, 1);
-            _rede.CriarLugar(3);
+            var rede = new RedePetri();
+            rede.CriarLugar(1, 1);
+            rede.CriarLugar(2, 1);
+            rede.CriarLugar(3);
 
-            _rede.CriarTransicao(1);
+            rede.CriarTransicao(1);
 
-            _rede.CriarArco(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1), TipoArco.Inibidor);
-            _rede.CriarArco(_rede.ObterLugar(2), (_rede.ObterTransicao(1), 1), TipoArco.Normal);
+            rede.CriarArco(rede.ObterLugar(1), (rede.ObterTransicao(1), 1), TipoArco.Inibidor);
+            rede.CriarArco(rede.ObterLugar(2), (rede.ObterTransicao(1), 1), TipoArco.Normal);
 
-            _rede.CriarArco(_rede.ObterTransicao(1), (_rede.ObterLugar(2), 1));
-            return _rede;
+            rede.CriarArco(rede.ObterTransicao(1), (rede.ObterLugar(2), 1));
+            return rede;
         }
 
         public static RedePetri ArcoReset()
         {
-            var _rede = new RedePetri();
-            _rede.CriarLugar(1, 11);
-            _rede.CriarLugar(2, 1);
-            _rede.CriarLugar(3);
+            var rede = new RedePetri();
+            rede.CriarLugar(1, 11);
+            rede.CriarLugar(2, 1);
+            rede.CriarLugar(3);
 
-            _rede.CriarTransicao(1);
+            rede.CriarTransicao(1);
 
-            _rede.CriarArco(_rede.ObterLugar(1), (_rede.ObterTransicao(1), 1), TipoArco.Reset);
-            _rede.CriarArco(_rede.ObterLugar(2), (_rede.ObterTransicao(1), 1), TipoArco.Normal);
+            rede.CriarArco(rede.ObterLugar(1), (rede.ObterTransicao(1), 1), TipoArco.Reset);
+            rede.CriarArco(rede.ObterLugar(2), (rede.ObterTransicao(1), 1), TipoArco.Normal);
 
-            _rede.CriarArco(_rede.ObterTransicao(1), (_rede.ObterLugar(3), 1));
-            return _rede;
+            rede.CriarArco(rede.ObterTransicao(1), (rede.ObterLugar(3), 1));
+            return rede;
         }
     }
 }

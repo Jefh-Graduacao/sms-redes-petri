@@ -22,6 +22,19 @@ namespace RedesPetri.WinForms
         public FormPrincipal()
         {
             InitializeComponent();
+
+            void clickMenuCarregarExemplo(object sender, EventArgs e)
+            {
+                if (sender is not ToolStripMenuItem { Text: { Length: > 0 } } menuItem)
+                    return;
+
+                _rede = ExemplosProntos.Redes[menuItem.Text];
+                CarregarRedeNaTela();
+            };
+
+            exemplosStripMenuItem.DropDownItems.AddRange(
+                 ExemplosProntos.Redes.Select(itemDicionario => new ToolStripMenuItem(itemDicionario.Key, null, clickMenuCarregarExemplo)).ToArray()
+            );
         }
 
         private void FormPrincipal_Load(object sender, EventArgs e)
@@ -29,12 +42,13 @@ namespace RedesPetri.WinForms
             comboBoxTipoCon.DataSource = new BindingList<TipoArco>(new[]
             {
                 TipoArco.Normal,
-                TipoArco.Normal,
+                TipoArco.Inibidor,
                 TipoArco.Reset
             });
 
-            comboExemplos.DataSource = ExemplosProntos.Redes.Keys.ToArray();
             CarregarRedeNaTela();
+
+            menuPrincipal.Visible = true;
         }
 
         private void CarregarRedeNaTela()
@@ -122,8 +136,8 @@ namespace RedesPetri.WinForms
         {
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText = "Núm do Ciclo",
-                Width = 200
+                HeaderText = "Ciclo",
+                Width = 100
             });
 
             foreach (var id in _rede.LugaresTransicoes.Select(lt => lt.id))
@@ -189,23 +203,19 @@ namespace RedesPetri.WinForms
 
         private void AdicionarUltimoCicloNoGrid() =>
             dataGridView1.Rows.Add((new[] { _rede.CicloAtual.ToString() }).Concat(_rede.LugaresTransicoes.Select(lt => lt.valor)).ToArray());
-
-        private void btCarregarExemplo_Click(object sender, EventArgs e)
+        
+        private static async Task GerarImagem()
         {
-            if (comboExemplos.SelectedItem is not string chaveRedeSelecionada)
-                return;
+            var graph = Graph.Directed
+                .Add(EdgeStatement.For("a", "b"))
+                .Add(EdgeStatement.For("a", "c"));
 
-            _rede = ExemplosProntos.Redes[chaveRedeSelecionada];
-            CarregarRedeNaTela();
+            var renderer = new Renderer("C:\\\\Program Files\\Graphviz\\bin");
+            using var file = File.Create("C:\\\\Users\\bueno\\Desktop\\graph.png");
+            await renderer.RunAsync(graph, file, RendererLayouts.Dot, RendererFormats.Png, CancellationToken.None);
         }
 
-        private void btResetar_Click(object sender, EventArgs e)
-        {
-            _rede = new();
-            CarregarRedeNaTela();
-        }
-
-        private async void btExecutarTodosCiclos_Click(object sender, EventArgs e)
+        private async void executarTodosCiclosStripMenuItem_Click(object sender, EventArgs e)
         {
             bool continuarExecucao = true;
             while (continuarExecucao)
@@ -214,19 +224,14 @@ namespace RedesPetri.WinForms
                 if (continuarExecucao)
                     AdicionarUltimoCicloNoGrid();
 
-                await Task.Delay(500);
+                await Task.Delay(250);
             }
         }
 
-        private static async Task GerarImagem()
+        private void novaSimulacaoStripMenuItem_Click(object sender, EventArgs e)
         {
-            var graph = Graph.Undirected
-                .Add(EdgeStatement.For("a", "b"))
-                .Add(EdgeStatement.For("a", "c"));
-
-            var renderer = new Renderer("C:\\\\Program Files\\Graphviz\\bin");
-            using var file = File.Create("C:\\\\Users\\bueno\\Desktop\\graph.png");
-            await renderer.RunAsync(graph, file, RendererLayouts.Dot, RendererFormats.Png, CancellationToken.None);
+            _rede = new();
+            CarregarRedeNaTela();
         }
     }
 }

@@ -60,14 +60,12 @@ namespace RedesPetri.WinForms
             this.comboBoxTipoCon = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBoxConexao = new System.Windows.Forms.GroupBox();
-            this.comboExemplos = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btCarregarExemplo = new System.Windows.Forms.Button();
-            this.btResetar = new System.Windows.Forms.Button();
-            this.btExecutarTodosCiclos = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.menuPrincipal = new System.Windows.Forms.MenuStrip();
+            this.simulacaoStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.novaSimulacaoStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.executarTodosCiclosStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exemplosStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeroDeMarcas)).BeginInit();
@@ -76,8 +74,7 @@ namespace RedesPetri.WinForms
             ((System.ComponentModel.ISupportInitialize)(this.pesoTransicaoSaida)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pesoTransicaoEntrada)).BeginInit();
             this.groupBoxConexao.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.menuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -86,15 +83,17 @@ namespace RedesPetri.WinForms
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 443);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 352);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1465, 419);
+            this.dataGridView1.Size = new System.Drawing.Size(1467, 493);
             this.dataGridView1.TabIndex = 0;
             // 
             // textBox1
@@ -133,7 +132,7 @@ namespace RedesPetri.WinForms
             this.groupBox1.Controls.Add(this.btCriarLugar);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(15, 107);
+            this.groupBox1.Location = new System.Drawing.Point(13, 28);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
@@ -165,7 +164,7 @@ namespace RedesPetri.WinForms
             this.groupBox2.Controls.Add(this.txtIdNovaTransicao);
             this.groupBox2.Controls.Add(this.btCriarTransicao);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(306, 107);
+            this.groupBox2.Location = new System.Drawing.Point(304, 28);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(173, 139);
             this.groupBox2.TabIndex = 6;
@@ -207,7 +206,7 @@ namespace RedesPetri.WinForms
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.comboLugares2);
             this.groupBox3.Controls.Add(this.comboTransicoes2);
-            this.groupBox3.Location = new System.Drawing.Point(913, 107);
+            this.groupBox3.Location = new System.Drawing.Point(911, 28);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(422, 139);
             this.groupBox3.TabIndex = 8;
@@ -290,19 +289,21 @@ namespace RedesPetri.WinForms
             // 
             // listViewConexoes
             // 
+            this.listViewConexoes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewConexoes.HideSelection = false;
-            this.listViewConexoes.Location = new System.Drawing.Point(15, 265);
+            this.listViewConexoes.Location = new System.Drawing.Point(13, 174);
             this.listViewConexoes.Name = "listViewConexoes";
-            this.listViewConexoes.Size = new System.Drawing.Size(1463, 171);
+            this.listViewConexoes.Size = new System.Drawing.Size(1468, 171);
             this.listViewConexoes.TabIndex = 9;
             this.listViewConexoes.UseCompatibleStateImageBehavior = false;
             this.listViewConexoes.View = System.Windows.Forms.View.List;
             // 
             // btExecutarCiclo
             // 
-            this.btExecutarCiclo.Location = new System.Drawing.Point(188, 42);
+            this.btExecutarCiclo.Location = new System.Drawing.Point(1264, 852);
             this.btExecutarCiclo.Name = "btExecutarCiclo";
-            this.btExecutarCiclo.Size = new System.Drawing.Size(173, 30);
+            this.btExecutarCiclo.Size = new System.Drawing.Size(216, 30);
             this.btExecutarCiclo.TabIndex = 10;
             this.btExecutarCiclo.Text = "Executar ciclo";
             this.btExecutarCiclo.UseVisualStyleBackColor = true;
@@ -411,103 +412,66 @@ namespace RedesPetri.WinForms
             this.groupBoxConexao.Controls.Add(this.label4);
             this.groupBoxConexao.Controls.Add(this.comboTransicoes);
             this.groupBoxConexao.Controls.Add(this.comboLugares);
-            this.groupBoxConexao.Location = new System.Drawing.Point(485, 107);
+            this.groupBoxConexao.Location = new System.Drawing.Point(483, 28);
             this.groupBoxConexao.Name = "groupBoxConexao";
             this.groupBoxConexao.Size = new System.Drawing.Size(422, 139);
             this.groupBoxConexao.TabIndex = 7;
             this.groupBoxConexao.TabStop = false;
             this.groupBoxConexao.Text = "Conexão (Lugar -> Transição)";
             // 
-            // comboExemplos
+            // menuPrincipal
             // 
-            this.comboExemplos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboExemplos.FormattingEnabled = true;
-            this.comboExemplos.Location = new System.Drawing.Point(6, 45);
-            this.comboExemplos.Name = "comboExemplos";
-            this.comboExemplos.Size = new System.Drawing.Size(325, 27);
-            this.comboExemplos.TabIndex = 10;
+            this.menuPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.simulacaoStripMenuItem,
+            this.exemplosStripMenuItem});
+            this.menuPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.menuPrincipal.Name = "menuPrincipal";
+            this.menuPrincipal.Size = new System.Drawing.Size(1492, 24);
+            this.menuPrincipal.TabIndex = 17;
+            this.menuPrincipal.Text = "menuStrip1";
             // 
-            // label11
+            // simulacaoStripMenuItem
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 23);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(70, 19);
-            this.label11.TabIndex = 6;
-            this.label11.Text = "Exemplo";
+            this.simulacaoStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.novaSimulacaoStripMenuItem,
+            this.toolStripSeparator6,
+            this.executarTodosCiclosStripMenuItem});
+            this.simulacaoStripMenuItem.Name = "simulacaoStripMenuItem";
+            this.simulacaoStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.simulacaoStripMenuItem.Text = "&Simulação";
             // 
-            // groupBox4
+            // novaSimulacaoStripMenuItem
             // 
-            this.groupBox4.Controls.Add(this.btCarregarExemplo);
-            this.groupBox4.Controls.Add(this.comboExemplos);
-            this.groupBox4.Controls.Add(this.label11);
-            this.groupBox4.Location = new System.Drawing.Point(15, 12);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(525, 88);
-            this.groupBox4.TabIndex = 11;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Carregar Exemplos";
+            this.novaSimulacaoStripMenuItem.Name = "novaSimulacaoStripMenuItem";
+            this.novaSimulacaoStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.novaSimulacaoStripMenuItem.Text = "Nova";
+            this.novaSimulacaoStripMenuItem.Click += new System.EventHandler(this.novaSimulacaoStripMenuItem_Click);
             // 
-            // btCarregarExemplo
+            // toolStripSeparator6
             // 
-            this.btCarregarExemplo.Location = new System.Drawing.Point(337, 42);
-            this.btCarregarExemplo.Name = "btCarregarExemplo";
-            this.btCarregarExemplo.Size = new System.Drawing.Size(173, 30);
-            this.btCarregarExemplo.TabIndex = 12;
-            this.btCarregarExemplo.Text = "Carregar";
-            this.btCarregarExemplo.UseVisualStyleBackColor = true;
-            this.btCarregarExemplo.Click += new System.EventHandler(this.btCarregarExemplo_Click);
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(197, 6);
             // 
-            // btResetar
+            // executarTodosCiclosStripMenuItem
             // 
-            this.btResetar.Location = new System.Drawing.Point(6, 42);
-            this.btResetar.Name = "btResetar";
-            this.btResetar.Size = new System.Drawing.Size(173, 30);
-            this.btResetar.TabIndex = 13;
-            this.btResetar.Text = "Limpar Rede";
-            this.btResetar.UseVisualStyleBackColor = true;
-            this.btResetar.Click += new System.EventHandler(this.btResetar_Click);
+            this.executarTodosCiclosStripMenuItem.Name = "executarTodosCiclosStripMenuItem";
+            this.executarTodosCiclosStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.executarTodosCiclosStripMenuItem.Text = "Executar todos os ciclos";
+            this.executarTodosCiclosStripMenuItem.Click += new System.EventHandler(this.executarTodosCiclosStripMenuItem_Click);
             // 
-            // btExecutarTodosCiclos
+            // exemplosStripMenuItem
             // 
-            this.btExecutarTodosCiclos.Location = new System.Drawing.Point(367, 42);
-            this.btExecutarTodosCiclos.Name = "btExecutarTodosCiclos";
-            this.btExecutarTodosCiclos.Size = new System.Drawing.Size(173, 30);
-            this.btExecutarTodosCiclos.TabIndex = 14;
-            this.btExecutarTodosCiclos.Text = "Executar todos";
-            this.btExecutarTodosCiclos.UseVisualStyleBackColor = true;
-            this.btExecutarTodosCiclos.Click += new System.EventHandler(this.btExecutarTodosCiclos_Click);
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.button1);
-            this.groupBox5.Controls.Add(this.btExecutarCiclo);
-            this.groupBox5.Controls.Add(this.btExecutarTodosCiclos);
-            this.groupBox5.Controls.Add(this.btResetar);
-            this.groupBox5.Location = new System.Drawing.Point(546, 12);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(789, 88);
-            this.groupBox5.TabIndex = 15;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Controle da Rede";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(608, 42);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(173, 30);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Executar todos";
-            this.button1.UseVisualStyleBackColor = true;
+            this.exemplosStripMenuItem.Name = "exemplosStripMenuItem";
+            this.exemplosStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.exemplosStripMenuItem.Text = "&Exemplos";
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1492, 875);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
+            this.ClientSize = new System.Drawing.Size(1492, 894);
+            this.Controls.Add(this.menuPrincipal);
+            this.Controls.Add(this.btExecutarCiclo);
             this.Controls.Add(this.listViewConexoes);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBoxConexao);
@@ -515,6 +479,7 @@ namespace RedesPetri.WinForms
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MainMenuStrip = this.menuPrincipal;
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rede de Petri";
@@ -531,10 +496,10 @@ namespace RedesPetri.WinForms
             ((System.ComponentModel.ISupportInitialize)(this.pesoTransicaoEntrada)).EndInit();
             this.groupBoxConexao.ResumeLayout(false);
             this.groupBoxConexao.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
+            this.menuPrincipal.ResumeLayout(false);
+            this.menuPrincipal.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -571,14 +536,13 @@ namespace RedesPetri.WinForms
         private System.Windows.Forms.ComboBox comboBoxTipoCon;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBoxConexao;
-        private System.Windows.Forms.ComboBox comboExemplos;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button btCarregarExemplo;
-        private System.Windows.Forms.Button btResetar;
-        private System.Windows.Forms.Button btExecutarTodosCiclos;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.MenuStrip menuPrincipal;
+        private System.Windows.Forms.ToolStripMenuItem novaSimulacaoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem simulacaoStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem novaSimulacaoStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem executarTodosCiclosStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exemplosStripMenuItem;
     }
 }
 

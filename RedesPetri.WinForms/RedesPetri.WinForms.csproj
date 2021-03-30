@@ -14,4 +14,8 @@
     <PackageReference Include="Shields.GraphViz" Version="1.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
 </Project>
