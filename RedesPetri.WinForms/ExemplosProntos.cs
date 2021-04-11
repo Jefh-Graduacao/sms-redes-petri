@@ -98,7 +98,7 @@ namespace RedesPetri.WinForms
             rede.CriarArco(rede.ObterLugar(1), (rede.ObterTransicao(1), 1), TipoArco.Inibidor);
             rede.CriarArco(rede.ObterLugar(2), (rede.ObterTransicao(1), 1), TipoArco.Normal);
 
-            rede.CriarArco(rede.ObterTransicao(1), (rede.ObterLugar(2), 1));
+            rede.CriarArco(rede.ObterTransicao(1), (rede.ObterLugar(3), 1));
             return rede;
         }
 
