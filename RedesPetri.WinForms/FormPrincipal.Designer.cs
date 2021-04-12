@@ -101,7 +101,7 @@ namespace RedesPetri.WinForms
             this.textBox1.Location = new System.Drawing.Point(8, 66);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(149, 36);
+            this.textBox1.Size = new System.Drawing.Size(149, 27);
             this.textBox1.TabIndex = 1;
             // 
             // btCriarLugar
@@ -121,7 +121,7 @@ namespace RedesPetri.WinForms
             this.label1.Location = new System.Drawing.Point(6, 33);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 29);
+            this.label1.Size = new System.Drawing.Size(24, 19);
             this.label1.TabIndex = 3;
             this.label1.Text = "Id";
             // 
@@ -146,7 +146,7 @@ namespace RedesPetri.WinForms
             this.numeroDeMarcas.Location = new System.Drawing.Point(167, 65);
             this.numeroDeMarcas.Margin = new System.Windows.Forms.Padding(4);
             this.numeroDeMarcas.Name = "numeroDeMarcas";
-            this.numeroDeMarcas.Size = new System.Drawing.Size(93, 36);
+            this.numeroDeMarcas.Size = new System.Drawing.Size(93, 27);
             this.numeroDeMarcas.TabIndex = 4;
             // 
             // label2
@@ -155,7 +155,7 @@ namespace RedesPetri.WinForms
             this.label2.Location = new System.Drawing.Point(165, 32);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 29);
+            this.label2.Size = new System.Drawing.Size(57, 19);
             this.label2.TabIndex = 5;
             this.label2.Text = "Marcas";
             // 
@@ -175,7 +175,7 @@ namespace RedesPetri.WinForms
             // 
             this.txtIdNovaTransicao.Location = new System.Drawing.Point(6, 66);
             this.txtIdNovaTransicao.Name = "txtIdNovaTransicao";
-            this.txtIdNovaTransicao.Size = new System.Drawing.Size(149, 36);
+            this.txtIdNovaTransicao.Size = new System.Drawing.Size(149, 27);
             this.txtIdNovaTransicao.TabIndex = 1;
             // 
             // btCriarTransicao
@@ -193,7 +193,7 @@ namespace RedesPetri.WinForms
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 33);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 29);
+            this.label3.Size = new System.Drawing.Size(24, 19);
             this.label3.TabIndex = 3;
             this.label3.Text = "Id";
             // 
@@ -233,7 +233,7 @@ namespace RedesPetri.WinForms
             0,
             0});
             this.pesoTransicaoSaida.Name = "pesoTransicaoSaida";
-            this.pesoTransicaoSaida.Size = new System.Drawing.Size(93, 36);
+            this.pesoTransicaoSaida.Size = new System.Drawing.Size(93, 27);
             this.pesoTransicaoSaida.TabIndex = 6;
             this.pesoTransicaoSaida.Value = new decimal(new int[] {
             1,
@@ -247,7 +247,7 @@ namespace RedesPetri.WinForms
             this.label7.Location = new System.Drawing.Point(319, 34);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 29);
+            this.label7.Size = new System.Drawing.Size(42, 19);
             this.label7.TabIndex = 7;
             this.label7.Text = "Peso";
             // 
@@ -256,7 +256,7 @@ namespace RedesPetri.WinForms
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(163, 32);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(103, 29);
+            this.label8.Size = new System.Drawing.Size(69, 19);
             this.label8.TabIndex = 5;
             this.label8.Text = "Id Lugar";
             // 
@@ -265,7 +265,7 @@ namespace RedesPetri.WinForms
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(6, 32);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(145, 29);
+            this.label9.Size = new System.Drawing.Size(97, 19);
             this.label9.TabIndex = 4;
             this.label9.Text = "Id Transição";
             // 
@@ -275,7 +275,7 @@ namespace RedesPetri.WinForms
             this.comboLugares2.FormattingEnabled = true;
             this.comboLugares2.Location = new System.Drawing.Point(163, 66);
             this.comboLugares2.Name = "comboLugares2";
-            this.comboLugares2.Size = new System.Drawing.Size(151, 37);
+            this.comboLugares2.Size = new System.Drawing.Size(151, 27);
             this.comboLugares2.TabIndex = 1;
             // 
             // comboTransicoes2
@@ -284,7 +284,7 @@ namespace RedesPetri.WinForms
             this.comboTransicoes2.FormattingEnabled = true;
             this.comboTransicoes2.Location = new System.Drawing.Point(6, 66);
             this.comboTransicoes2.Name = "comboTransicoes2";
-            this.comboTransicoes2.Size = new System.Drawing.Size(151, 37);
+            this.comboTransicoes2.Size = new System.Drawing.Size(151, 27);
             this.comboTransicoes2.TabIndex = 0;
             // 
             // listViewConexoes
@@ -301,6 +301,7 @@ namespace RedesPetri.WinForms
             // 
             // btExecutarCiclo
             // 
+            this.btExecutarCiclo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btExecutarCiclo.Location = new System.Drawing.Point(1264, 852);
             this.btExecutarCiclo.Name = "btExecutarCiclo";
             this.btExecutarCiclo.Size = new System.Drawing.Size(216, 32);
@@ -315,7 +316,7 @@ namespace RedesPetri.WinForms
             this.comboLugares.FormattingEnabled = true;
             this.comboLugares.Location = new System.Drawing.Point(6, 66);
             this.comboLugares.Name = "comboLugares";
-            this.comboLugares.Size = new System.Drawing.Size(151, 37);
+            this.comboLugares.Size = new System.Drawing.Size(151, 27);
             this.comboLugares.TabIndex = 0;
             // 
             // comboTransicoes
@@ -324,7 +325,7 @@ namespace RedesPetri.WinForms
             this.comboTransicoes.FormattingEnabled = true;
             this.comboTransicoes.Location = new System.Drawing.Point(163, 66);
             this.comboTransicoes.Name = "comboTransicoes";
-            this.comboTransicoes.Size = new System.Drawing.Size(151, 37);
+            this.comboTransicoes.Size = new System.Drawing.Size(151, 27);
             this.comboTransicoes.TabIndex = 1;
             // 
             // label4
@@ -332,7 +333,7 @@ namespace RedesPetri.WinForms
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 32);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 29);
+            this.label4.Size = new System.Drawing.Size(69, 19);
             this.label4.TabIndex = 4;
             this.label4.Text = "Id Lugar";
             // 
@@ -341,7 +342,7 @@ namespace RedesPetri.WinForms
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(163, 32);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(145, 29);
+            this.label5.Size = new System.Drawing.Size(97, 19);
             this.label5.TabIndex = 5;
             this.label5.Text = "Id Transição";
             // 
@@ -351,7 +352,7 @@ namespace RedesPetri.WinForms
             this.label6.Location = new System.Drawing.Point(319, 34);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 29);
+            this.label6.Size = new System.Drawing.Size(42, 19);
             this.label6.TabIndex = 7;
             this.label6.Text = "Peso";
             // 
@@ -365,7 +366,7 @@ namespace RedesPetri.WinForms
             0,
             0});
             this.pesoTransicaoEntrada.Name = "pesoTransicaoEntrada";
-            this.pesoTransicaoEntrada.Size = new System.Drawing.Size(93, 36);
+            this.pesoTransicaoEntrada.Size = new System.Drawing.Size(93, 27);
             this.pesoTransicaoEntrada.TabIndex = 6;
             this.pesoTransicaoEntrada.Value = new decimal(new int[] {
             1,
@@ -389,7 +390,7 @@ namespace RedesPetri.WinForms
             this.comboBoxTipoCon.FormattingEnabled = true;
             this.comboBoxTipoCon.Location = new System.Drawing.Point(163, 112);
             this.comboBoxTipoCon.Name = "comboBoxTipoCon";
-            this.comboBoxTipoCon.Size = new System.Drawing.Size(151, 37);
+            this.comboBoxTipoCon.Size = new System.Drawing.Size(151, 27);
             this.comboBoxTipoCon.TabIndex = 8;
             // 
             // label10
@@ -397,7 +398,7 @@ namespace RedesPetri.WinForms
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(0, 117);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(157, 29);
+            this.label10.Size = new System.Drawing.Size(107, 19);
             this.label10.TabIndex = 9;
             this.label10.Text = "Tipo Conexão";
             // 
@@ -427,7 +428,7 @@ namespace RedesPetri.WinForms
             this.exemplosStripMenuItem});
             this.menuPrincipal.Location = new System.Drawing.Point(0, 0);
             this.menuPrincipal.Name = "menuPrincipal";
-            this.menuPrincipal.Size = new System.Drawing.Size(1492, 33);
+            this.menuPrincipal.Size = new System.Drawing.Size(1492, 24);
             this.menuPrincipal.TabIndex = 17;
             this.menuPrincipal.Text = "menuStrip1";
             // 
@@ -438,37 +439,37 @@ namespace RedesPetri.WinForms
             this.toolStripSeparator6,
             this.executarTodosCiclosStripMenuItem});
             this.simulacaoStripMenuItem.Name = "simulacaoStripMenuItem";
-            this.simulacaoStripMenuItem.Size = new System.Drawing.Size(109, 29);
+            this.simulacaoStripMenuItem.Size = new System.Drawing.Size(74, 20);
             this.simulacaoStripMenuItem.Text = "&Simulação";
             // 
             // novaSimulacaoStripMenuItem
             // 
             this.novaSimulacaoStripMenuItem.Name = "novaSimulacaoStripMenuItem";
-            this.novaSimulacaoStripMenuItem.Size = new System.Drawing.Size(303, 34);
+            this.novaSimulacaoStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.novaSimulacaoStripMenuItem.Text = "Nova";
             this.novaSimulacaoStripMenuItem.Click += new System.EventHandler(this.novaSimulacaoStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(300, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(197, 6);
             // 
             // executarTodosCiclosStripMenuItem
             // 
             this.executarTodosCiclosStripMenuItem.Name = "executarTodosCiclosStripMenuItem";
-            this.executarTodosCiclosStripMenuItem.Size = new System.Drawing.Size(303, 34);
+            this.executarTodosCiclosStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.executarTodosCiclosStripMenuItem.Text = "Executar todos os ciclos";
             this.executarTodosCiclosStripMenuItem.Click += new System.EventHandler(this.executarTodosCiclosStripMenuItem_Click);
             // 
             // exemplosStripMenuItem
             // 
             this.exemplosStripMenuItem.Name = "exemplosStripMenuItem";
-            this.exemplosStripMenuItem.Size = new System.Drawing.Size(104, 29);
+            this.exemplosStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.exemplosStripMenuItem.Text = "&Exemplos";
             // 
             // FormPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1492, 894);
             this.Controls.Add(this.menuPrincipal);
@@ -480,6 +481,7 @@ namespace RedesPetri.WinForms
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuPrincipal;
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
