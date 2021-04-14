@@ -28,7 +28,7 @@ namespace RedesPetri
                     // Consome marcas enquanto a transição estiver habilitada no ciclo                    
                     while (transicao.EstáHabilitada)
                     {
-                        transicao.ConsumirMarcas();
+                        transicao.ExecutarTransicao();
                     }
                 }
             }

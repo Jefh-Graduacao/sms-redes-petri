@@ -5,7 +5,7 @@ using static System.Console;
 
 namespace RedesPetri.Entidades
 {
-    public class RedePetri
+    public sealed class RedePetri
     {
         public int CicloAtual { get; private set; } = 0;
         public List<Lugar> Lugares { get; set; } = new();
@@ -111,7 +111,7 @@ namespace RedesPetri.Entidades
                     // Consome marcas enquanto a transição estiver habilitada no ciclo                    
                     while (transicao.EstáHabilitada)
                     {
-                        transicao.ConsumirMarcas();
+                        transicao.ExecutarTransicao();
                     }
                 }
             }

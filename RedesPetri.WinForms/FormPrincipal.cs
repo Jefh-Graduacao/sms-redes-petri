@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RedesPetri.Entidades.Arcos;
 
 namespace RedesPetri.WinForms
 {
@@ -161,15 +162,15 @@ namespace RedesPetri.WinForms
 
         private void AtualizarConexoes()
         {
-            var itensListView = _rede.Transicoes.SelectMany(transicao => transicao.TodasConexoes)
+            var itensListView = _rede.Transicoes.SelectMany(transicao => transicao.TodosArcos)
                 .Select(arco =>
                 {
-                    var descConexao = arco.Direcao == DirecaoArco.SaidaTransicao
+                    var descConexao = arco.Direcao == DirecaoArco.SaídaTransição
                         ? $"T{arco.Transicao.Id} -> L{arco.Lugar.Id}"
                         : $"L{arco.Lugar.Id} -> T{arco.Transicao.Id}";
 
                     var tipo = "";
-                    if (arco.Direcao == DirecaoArco.EntradaTransicao)
+                    if (arco.Direcao == DirecaoArco.EntradaTransição)
                     {
                         if (arco.Tipo == TipoArco.Normal)
                             tipo = "(Tipo N)";
