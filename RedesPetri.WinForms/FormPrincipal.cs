@@ -15,10 +15,30 @@ namespace RedesPetri.WinForms
 {
     public partial class FormPrincipal : Form
     {
+        /// <summary>
+        /// armazena a rede de petri na memória
+        /// </summary>
         private RedePetri _rede = new();
 
+        /// <summary>
+        /// lista de lugares usada na criação de arcos de Lugar para Transição
+        /// </summary>
         private BindingList<int> _listaLugares = new();
+
+        /// <summary>
+        /// lista de transições usada na criação de arcos de Lugar para Transição
+        /// </summary>
         private BindingList<int> _listaTransicoes = new();
+        
+        /// <summary>
+        /// lista de lugares usada na criação de arcos de Transição para Lugar        
+        /// <summary>
+        private BindingList<int> _listaLugares2 = new();
+
+        /// <summary>
+        /// lista de transições usada na criação de arcos de Transição para Lugar        
+        /// <summary>
+        private BindingList<int> _listaTransicoes2 = new();
 
         public FormPrincipal()
         {
@@ -54,18 +74,29 @@ namespace RedesPetri.WinForms
 
         private void CarregarRedeNaTela()
         {
+            //usados para controlar lista de lugares e transições
+            //na criação de arco de Lugar para Transição
             _listaLugares = new BindingList<int>(_rede.Lugares.Select(x => x.Id).ToList());
             _listaTransicoes = new BindingList<int>(_rede.Transicoes.Select(x => x.Id).ToList());
 
             comboLugares.DataSource = _listaLugares;
             comboTransicoes.DataSource = _listaTransicoes;
 
-            comboLugares2.DataSource = _listaLugares;
-            comboTransicoes2.DataSource = _listaTransicoes;
+            //usados para controlar lista de lugares e transições
+            //na criação de arco de Transição para Lugar
+            _listaLugares2 = new BindingList<int>(_rede.Lugares.Select(x => x.Id).ToList());
+            _listaTransicoes2 = new BindingList<int>(_rede.Transicoes.Select(x => x.Id).ToList());
 
+            comboLugares2.DataSource = _listaLugares2;
+            comboTransicoes2.DataSource = _listaTransicoes2;
+
+            //mostra itens da tabela
             RedesenharGrid();
+
+            //mostra conexoes da rede
             AtualizarConexoes();
 
+            //habilita botão para executar ciclo
             btExecutarCiclo.Enabled = true;
         }
 
@@ -79,7 +110,10 @@ namespace RedesPetri.WinForms
 
             bool lugarCriado = _rede.CriarLugar(id, Convert.ToInt32(numeroDeMarcas.Value));
             if (lugarCriado)
+            {
                 _listaLugares.Add(id);
+                _listaLugares2.Add(id);
+            }
 
             RedesenharGrid();
         }
@@ -91,7 +125,10 @@ namespace RedesPetri.WinForms
 
             bool transicaoCriada = _rede.CriarTransicao(id);
             if (transicaoCriada)
+            {
                 _listaTransicoes.Add(id);
+                _listaTransicoes2.Add(id);
+            }
 
             RedesenharGrid();
         }
@@ -204,7 +241,7 @@ namespace RedesPetri.WinForms
 
         private void AdicionarUltimoCicloNoGrid() =>
             dataGridView1.Rows.Add((new[] { _rede.CicloAtual.ToString() }).Concat(_rede.LugaresTransicoes.Select(lt => lt.valor)).ToArray());
-        
+
         private static async Task GerarImagem()
         {
             var graph = Graph.Directed
