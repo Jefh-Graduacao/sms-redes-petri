@@ -24,7 +24,7 @@ namespace RedesPetri.WinForms
             rede.CriarLugar(4);
             rede.CriarLugar(5);
             rede.CriarLugar(6);
-            rede.CriarLugar(7);
+            rede.CriarLugar(7,10);
             rede.CriarLugar(8);
             rede.CriarLugar(9);
             rede.CriarLugar(10);
