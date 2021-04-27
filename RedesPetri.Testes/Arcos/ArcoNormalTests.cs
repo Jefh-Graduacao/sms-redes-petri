@@ -53,5 +53,22 @@ namespace RedesPetri.Testes.Arcos
 
             arco.EstáHabilitado.Should().BeFalse();
         }
+
+        [Theory]
+        [InlineData(10, 5, 5), InlineData(20, 10, 10), InlineData(39, 18, 21)]
+        public void Deve_Consumir_Marcas_Do_Lugar_De_Acordo_Com_Peso(int qtdMarcasLugar, int pesoArco, int qtdMarcasFinal)
+        {
+            var lugar = new Lugar(1, qtdMarcasLugar);
+            var arco = new ArcoNormal(
+                lugar,
+                pesoArco,
+                new Transicao(1),
+                DirecaoArco.EntradaTransição
+            );
+
+            arco.ConsumirMarcasDoLugar();
+
+            lugar.Marcas.Should().Be(qtdMarcasFinal);
+        }
     }
 }

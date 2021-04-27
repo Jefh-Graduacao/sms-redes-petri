@@ -1,5 +1,6 @@
 using FluentAssertions;
 using RedesPetri.Entidades;
+using RedesPetri.Entidades.Arcos;
 using Xunit;
 
 namespace RedesPetri.Testes

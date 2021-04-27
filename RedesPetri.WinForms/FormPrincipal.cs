@@ -29,22 +29,22 @@ namespace RedesPetri.WinForms
         /// lista de transições usada na criação de arcos de Lugar para Transição
         /// </summary>
         private BindingList<int> _listaTransicoes = new();
-        
+
         /// <summary>
         /// lista de lugares usada na criação de arcos de Transição para Lugar        
-        /// <summary>
+        /// </summary>
         private BindingList<int> _listaLugares2 = new();
 
         /// <summary>
         /// lista de transições usada na criação de arcos de Transição para Lugar        
-        /// <summary>
+        /// </summary>
         private BindingList<int> _listaTransicoes2 = new();
 
         public FormPrincipal()
         {
             InitializeComponent();
 
-            void clickMenuCarregarExemplo(object sender, EventArgs e)
+            void ClickMenuCarregarExemplo(object sender, EventArgs e)
             {
                 if (sender is not ToolStripMenuItem { Text: { Length: > 0 } } menuItem)
                     return;
@@ -54,7 +54,7 @@ namespace RedesPetri.WinForms
             };
 
             exemplosStripMenuItem.DropDownItems.AddRange(
-                 ExemplosProntos.Redes.Select(itemDicionario => new ToolStripMenuItem(itemDicionario.Key, null, clickMenuCarregarExemplo)).ToArray()
+                 ExemplosProntos.Redes.Select(itemDicionario => new ToolStripMenuItem(itemDicionario.Key, null, ClickMenuCarregarExemplo)).ToArray()
             );
         }
 
@@ -108,7 +108,7 @@ namespace RedesPetri.WinForms
             if (numeroDeMarcas.Value < 0)
                 return;
 
-            bool lugarCriado = _rede.CriarLugar(id, Convert.ToInt32(numeroDeMarcas.Value));
+            var lugarCriado = _rede.CriarLugar(id, Convert.ToInt32(numeroDeMarcas.Value));
             if (lugarCriado)
             {
                 _listaLugares.Add(id);
@@ -209,12 +209,13 @@ namespace RedesPetri.WinForms
                     var tipo = "";
                     if (arco.Direcao == DirecaoArco.EntradaTransição)
                     {
-                        if (arco.Tipo == TipoArco.Normal)
-                            tipo = "(Tipo N)";
-                        else if (arco.Tipo == TipoArco.Inibidor)
-                            tipo = "(Tipo I)";
-                        else if (arco.Tipo == TipoArco.Reset)
-                            tipo = "(Tipo R)";
+                        tipo = arco switch
+                        {
+                            ArcoNormal => "(Tipo N)",
+                            ArcoInibidor => "(Tipo I)",
+                            ArcoReset => "(Tipo R)",
+                            _ => "(Tipo Desconhecido)"
+                        };
                     }
 
                     return new ListViewItem($"{descConexao} \t Peso {arco.Peso} {tipo}");
@@ -249,7 +250,7 @@ namespace RedesPetri.WinForms
                 .Add(EdgeStatement.For("a", "c"));
 
             var renderer = new Renderer("C:\\\\Program Files\\Graphviz\\bin");
-            using var file = File.Create("C:\\\\Users\\bueno\\Desktop\\graph.png");
+            await using var file = File.Create("C:\\\\Users\\bueno\\Desktop\\graph.png");
             await renderer.RunAsync(graph, file, RendererLayouts.Dot, RendererFormats.Png, CancellationToken.None);
         }
 

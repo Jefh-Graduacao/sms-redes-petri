@@ -1,3 +1,4 @@
+using RedesPetri.Entidades.Arcos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,21 +34,27 @@ namespace RedesPetri.Entidades
             return true;
         }
 
-        // Obtem um lugar da rede
+        /// <summary>
+        /// Obtém um lugar da rede
+        /// </summary>
         public Lugar? ObterLugar(int id) => Lugares.FirstOrDefault(lugar => lugar.Id == id);
 
-        //Método para remover um lugar da rede
+        /// <summary>
+        /// Método para remover um lugar da rede
+        /// </summary>
         public bool RemoverLugar(int id)
         {
-            // Aqui preferi criar uma lista nova do que remover o lugar da atual...
+            // Aqui preferimos criar uma lista nova do que remover o lugar da atual...
 
             var novaLista = Lugares.Where(lugar => lugar.Id != id).ToList();
-            bool teveExclusao = novaLista.Count == Lugares.Count;
+            bool teveExclusao = novaLista.Count != Lugares.Count;
             Lugares = novaLista;
             return teveExclusao;
         }
-
-        // Cria Transição se ela nao existe
+        
+        /// <summary>
+        /// Cria uma Transição se ela nao existe 
+        /// </summary>
         public bool CriarTransicao(int id, Action<Transicao>? callbackTransicaoSaida = null)
         {
             if (ObterTransicao(id) is { })
@@ -61,9 +68,8 @@ namespace RedesPetri.Entidades
 
         public bool RemoverTransicao(int id)
         {
-            // Generalizar junto com o outro Remover
             var novaLista = Transicoes.Where(transicao => transicao.Id != id).ToList();
-            bool teveExclusao = novaLista.Count == Transicoes.Count;
+            var teveExclusao = novaLista.Count != Transicoes.Count;
             Transicoes = novaLista;
             return teveExclusao;
         }
@@ -94,7 +100,7 @@ namespace RedesPetri.Entidades
         /// <summary>
         /// Executa o ciclo atual da rede
         /// </summary>
-        /// <returns><see cref="true"/> caso o ciclo tenha sido executado, <see cref="false"/> caso a execução tenha terminado</returns>
+        /// <returns><see cref="true"/> caso o ciclo tenha sido executado, <see cref="false"/> caso a execução tenha terminado </returns>
         public bool ExecutarCiclo()
         {
             // Todas tr habilitadas no início do ciclo

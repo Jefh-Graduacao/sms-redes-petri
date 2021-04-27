@@ -57,5 +57,14 @@ namespace RedesPetri.Testes
             Action acaoConsumir = () => lugar.ConsumirMarcas(10);
             acaoConsumir.Should().Throw<InvalidOperationException>();
         }
+
+        [Fact]
+        public void Deve_Zerar_Marcas_Ao_Consumir_Todas()
+        {
+            var lugar = new Lugar(1, 10);
+            lugar.ConsumirTodasMarcas();
+
+            lugar.Marcas.Should().Be(0);
+        }
     }
 }

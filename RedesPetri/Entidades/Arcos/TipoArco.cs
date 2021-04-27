@@ -1,4 +1,4 @@
-namespace RedesPetri.Entidades
+namespace RedesPetri.Entidades.Arcos
 {
     public enum TipoArco
     {

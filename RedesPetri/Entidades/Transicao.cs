@@ -1,7 +1,7 @@
+using RedesPetri.Entidades.Arcos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using RedesPetri.Entidades.Arcos;
 
 namespace RedesPetri.Entidades
 {
@@ -66,21 +66,10 @@ namespace RedesPetri.Entidades
         /// </summary>
         public void ExecutarTransicao()
         {
-            foreach (var (lugar, peso, _, _, tipoConexao) in _arcosEntrada)
-            {
-                if (tipoConexao == TipoArco.Reset)
-                {
-                    //reset consome todas marcas
-                    lugar.ConsumirMarcas(lugar.Marcas);
-                }
-                else if (tipoConexao == TipoArco.Normal)
-                {
-                    //normal consome marcas igual ao peso
-                    lugar.ConsumirMarcas(peso);
-                }
-            }
+            foreach (var arcoEntrada in _arcosEntrada)
+                arcoEntrada.ConsumirMarcasDoLugar();
 
-            foreach (var (lugar, peso, _, _, _) in _arcosSaida)
+            foreach (var (lugar, peso, _, _) in _arcosSaida)
                 lugar.ProduzirMarcas(peso);
 
             _callbackTransicaoExecutada?.Invoke(this);

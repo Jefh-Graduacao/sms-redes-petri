@@ -39,6 +39,8 @@ namespace RedesPetri.Entidades
             _actionMarcaConsumida?.Invoke(this);
         }
 
+        public void ConsumirTodasMarcas() => ConsumirMarcas(Marcas);
+
         /// <summary>
         /// Produz marcas no lugar. Após produzir as marcas o callback de marcas produzidas é disparado.
         /// </summary>
